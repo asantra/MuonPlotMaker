@@ -40,6 +40,12 @@ def MakeLatex(xPoint, yPoint, latexName):
     return tex
 
 
+def MakeLine(xlow, ylow, xup, yup):
+  line = TLine(xlow,ylow,xup,yup)
+  line.SetLineStyle(1)
+  line.SetLineWidth(2)
+  return line
+
 def LegendMaker(energyPlots=False):
   legend1 = TLegend(0.6,0.7,0.85,0.85); ### without the mean
   legend1.SetFillColor(kWhite);
