@@ -1,11 +1,11 @@
 #! /bin/bash
 
-### how many jobs you want to submit, if -1, then submits jobs you set
+### which file extension you want to examine
 fileExtns=${1:-"ER"}
 #### runid for the output job name in the grid, increased by 1 for each job
 runid=0
 
-# Define the input file
+# Define the input file from a text file
 INFILE=${2:-"inputFileNames.txt"}
 sample=${3:-"MC"}
 
@@ -36,6 +36,8 @@ do
     outFile=${OUTDIRLOC}"/"${withoutRoot}"_Histogram.root"
     #### from where you are submitting jobs
     PRESENTDIRECTORY=${PWD}
+    ### examine the error log for any of the following keywords.
+    ### if present, the job is resubmitte.
     flag=0
     if ls ${DESTINATION}/run_$runid/*${fileExtns} &> /dev/null
     then
@@ -64,7 +66,7 @@ do
         flag=2
     fi
     
-    #### if there is error, resubmit them
+    #### if there is an error, resubmit them
     if [[ $flag -eq 1 ]]
     then 
         echo "At least one error for ${DESTINATION}/run_$runid"

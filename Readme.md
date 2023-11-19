@@ -30,7 +30,7 @@ c. This will prepare histogram file (one file) from all the input data root file
 
 
 ### B. Making histograms from MC:
-a. Change the `DESTINATION` and `OUTDIRLOC` in `sendJobs.sh` and `resendJobs.sh`
+a. Change the `DESTINATION` and `OUTDIRLOC` in `sendJobs.sh` and `resendJobs.sh` to your own areas.
 
 b. Run `sendJobs.sh` using: 
 ```
@@ -50,7 +50,7 @@ f. Once satisifed with the output, one has to 'hadd' all the histogram files to 
 
 
 ### C. Plotting and comparing histograms from Data and MC:
-a. Use `muonPlots.py`
+a. Use `muonPlots.py`: change the `inDir` to your location where histogram files live.
 
 b. When no comparison plots are needed: run 
 ```

@@ -1,6 +1,6 @@
 #! /bin/bash
 
-### how many jobs you want to submit, if -1, then submits jobs you set
+### how many jobs you want to submit, if -1, then submits all jobs
 nJobs=${1:-"-1"}
 #### runid for the output job name in the grid, increased by 1 for each job
 runid=0
@@ -21,7 +21,7 @@ EOF
 # Read the input text file line by line
 while read -r LINE
 do
-    printf '%s\n' "$LINE"
+    printf 'Working on: %s\n' "$LINE"
     ### a counter value
     b=1
     ### runid increased by one
