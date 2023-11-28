@@ -120,26 +120,27 @@ std::size_t number_of_files_in_directory(std::filesystem::path path)
 /// separate pt bin
 int getPtBin(float pt){
     int binNum = -999;
-    if(pt < 50)binNum = 1;
-    else if(pt < 100)binNum = 2;
-    else binNum = 3;
+    if(pt <= 60)binNum = 1;
+    else if(pt > 60 && pt <= 100)binNum = 2;
+    else if(pt > 100 && pt <= 150)binNum = 3;
+    else binNum = 4;
     return binNum;
 }
 
 /// separate eta bin
 int getEtaBin(float eta){
     int binNum = -999;
-    if(eta < 0.1)binNum=1;
-    else if(eta < 0.5)binNum=2;
-    else binNum=2;
+    if(eta <= 0.2)binNum=1;
+    else if(eta > 0.2 && eta <= 0.5)binNum=2;
+    else binNum=3;
     return binNum;
 }
 
 /// separate eta bin in endcap
 int getEtaBin_EC(float eta){
     int binNum = -999;
-    if(eta < 1.5)binNum=1;
-    else if(eta < 1.8)binNum=2;
-    else binNum=2;
+    if(eta <= 1.6)binNum=1;
+    else if(eta > 1.6 && eta <= 2.0)binNum=2;
+    else binNum=3;
     return binNum;
 }
