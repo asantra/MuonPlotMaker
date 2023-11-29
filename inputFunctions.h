@@ -121,26 +121,46 @@ std::size_t number_of_files_in_directory(std::filesystem::path path)
 int getPtBin(float pt){
     int binNum = -999;
     if(abs(pt) <= 60)binNum = 1;
-    else if(abs(pt) > 60 && abs(pt) <= 100)binNum = 2;
-    else if(abs(pt) > 100 && abs(pt) <= 150)binNum = 3;
-    else binNum = 4;
+    else if(abs(pt) > 60 && abs(pt) <= 80)binNum = 2;
+    else if(abs(pt) > 80 && abs(pt) <= 100)binNum = 3;
+    else if(abs(pt) > 100 && abs(pt) <= 120)binNum = 4;
+    else if(abs(pt) > 120 && abs(pt) <= 140)binNum = 5;
+    else if(abs(pt) > 140 && abs(pt) <= 160)binNum = 6;
+    else if(abs(pt) > 160 && abs(pt) <= 180)binNum = 7;
+    else if(abs(pt) > 180 && abs(pt) <= 200)binNum = 8;
+    else if(abs(pt) > 200 && abs(pt) <= 220)binNum = 9;
+    else binNum = 10;
     return binNum;
 }
 
 /// separate eta bin
 int getEtaBin(float eta){
     int binNum = -999;
-    if(abs(eta) <= 0.2)binNum=1;
-    else if(abs(eta) > 0.2 && abs(eta) <= 0.5)binNum=2;
-    else binNum=3;
+    if(abs(eta) <= 0.1)binNum=1;
+    else if(abs(eta) > 0.1 && abs(eta) <= 0.2)binNum=2;
+    else if(abs(eta) > 0.2 && abs(eta) <= 0.3)binNum=3;
+    else if(abs(eta) > 0.3 && abs(eta) <= 0.4)binNum=4;
+    else if(abs(eta) > 0.4 && abs(eta) <= 0.5)binNum=5;
+    else if(abs(eta) > 0.5 && abs(eta) <= 0.6)binNum=6;
+    else if(abs(eta) > 0.6 && abs(eta) <= 0.7)binNum=7;
+    else if(abs(eta) > 0.7 && abs(eta) <= 0.8)binNum=8;
+    else if(abs(eta) > 0.8 && abs(eta) <= 0.9)binNum=9;
+    else binNum=10;
     return binNum;
 }
 
 /// separate eta bin in endcap
 int getEtaBin_EC(float eta){
     int binNum = -999;
-    if(abs(eta) <= 1.6)binNum=1;
-    else if(abs(eta) > 1.6 && abs(eta) <= 2.0)binNum=2;
-    else binNum=3;
+    if(abs(eta) <= 1.4)binNum=1;
+    else if(abs(eta) > 1.4 && abs(eta) <= 1.5)binNum=2;
+    else if(abs(eta) > 1.5 && abs(eta) <= 1.6)binNum=3;
+    else if(abs(eta) > 1.6 && abs(eta) <= 1.7)binNum=4;
+    else if(abs(eta) > 1.7 && abs(eta) <= 1.8)binNum=5;
+    else if(abs(eta) > 1.8 && abs(eta) <= 1.9)binNum=6;
+    else if(abs(eta) > 1.9 && abs(eta) <= 2.0)binNum=7;
+    else if(abs(eta) > 2.0 && abs(eta) <= 2.1)binNum=8;
+    else if(abs(eta) > 2.1 && abs(eta) <= 2.2)binNum=9;
+    else binNum=10;
     return binNum;
 }

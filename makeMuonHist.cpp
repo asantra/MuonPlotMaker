@@ -152,6 +152,10 @@ void makeMuonHist(string inputFolder="user.asantra.data23_13p6TeV.00456409.physi
     allHisto1Dict.insert(make_pair("nMuon", ROOT::RDF::TH1DModel("number_muon", "number of muons; N_{#mu}; Events/bin", 5, 1, 6)));
     allHisto1Dict.insert(make_pair("muon_nprecisionLayers_0", ROOT::RDF::TH1DModel("nprecisionLayers_0", "nprecisionLayers; Number of precision layers (lead); Events/bin", 8, 0, 8)));
     allHisto1Dict.insert(make_pair("muon_nprecisionLayers_1", ROOT::RDF::TH1DModel("nprecisionLayers_1", "nprecisionLayers; Number of precision layers (sub-lead); Events/bin", 8, 0, 8)));
+    allHisto1Dict.insert(make_pair("muon_meqOverPsigma_0", ROOT::RDF::TH1DModel("muon_meqOverPsigma_0", "meqOverPsigma0; #sigma_{me} (lead); Events/bin", 1000, 0, 50)));
+    allHisto1Dict.insert(make_pair("muon_meqOverPsigma_1", ROOT::RDF::TH1DModel("muon_meqOverPsigma_1", "meqOverPsigma1; #sigma_{me} (sub-lead); Events/bin", 1000, 0, 50)));
+    allHisto1Dict.insert(make_pair("muon_idqOverPsigma_0", ROOT::RDF::TH1DModel("muon_idqOverPsigma_0", "idqOverPsigma0; #sigma_{id} (lead); Events/bin", 1000, 0, 50)));
+    allHisto1Dict.insert(make_pair("muon_idqOverPsigma_1", ROOT::RDF::TH1DModel("muon_idqOverPsigma_1", "idqOverPsigma1; #sigma_{id} (sub-lead); Events/bin", 1000, 0, 50)));
     allHisto1Dict.insert(make_pair("muon_qOverPsignif_0", ROOT::RDF::TH1DModel("muon_qOverPsignif_0", "qOverPsignif; q/p significance (lead); Events/bin", 50, 0, 10)));
     allHisto1Dict.insert(make_pair("muon_qOverPsignif_1", ROOT::RDF::TH1DModel("muon_qOverPsignif_1", "qOverPsignif; q/p significance (sub-lead); Events/bin", 50, 0, 10)));
     allHisto1Dict.insert(make_pair("muon_pt_0", ROOT::RDF::TH1DModel("muon_pt_0", "muon_pt; p_{T} (lead) [GeV]; Events/bin", 50, 0, 500)));
@@ -166,6 +170,10 @@ void makeMuonHist(string inputFolder="user.asantra.data23_13p6TeV.00456409.physi
     allHisto1Dict_EC.insert(make_pair("mll", ROOT::RDF::TH1DModel("dimuon_mass_reco_EC", "dimuon_mass_reco; m_{#mu#mu} [GeV]; Events/bin", 150, 0, 150)));
     allHisto1Dict_EC.insert(make_pair("muon_nprecisionLayers_0", ROOT::RDF::TH1DModel("nprecisionLayers_0_EC", "nprecisionLayers; Number of precision layers (lead); Events/bin", 8, 0, 8)));
     allHisto1Dict_EC.insert(make_pair("muon_nprecisionLayers_1", ROOT::RDF::TH1DModel("nprecisionLayers_1_EC", "nprecisionLayers; Number of precision layers (sub-lead); Events/bin", 8, 0, 8)));
+    allHisto1Dict_EC.insert(make_pair("muon_meqOverPsigma_0", ROOT::RDF::TH1DModel("muon_meqOverPsigma_0", "meqOverPsigma0; #sigma_{me} (lead); Events/bin", 1000, 0, 50)));
+    allHisto1Dict_EC.insert(make_pair("muon_meqOverPsigma_1", ROOT::RDF::TH1DModel("muon_meqOverPsigma_1", "meqOverPsigma1; #sigma_{me} (sub-lead); Events/bin", 1000, 0, 50)));
+    allHisto1Dict_EC.insert(make_pair("muon_idqOverPsigma_0", ROOT::RDF::TH1DModel("muon_idqOverPsigma_0", "idqOverPsigma0; #sigma_{id} (lead); Events/bin", 1000, 0, 50)));
+    allHisto1Dict_EC.insert(make_pair("muon_idqOverPsigma_1", ROOT::RDF::TH1DModel("muon_idqOverPsigma_1", "idqOverPsigma1; #sigma_{id} (sub-lead); Events/bin", 1000, 0, 50)));
     allHisto1Dict_EC.insert(make_pair("muon_qOverPsignif_0", ROOT::RDF::TH1DModel("muon_qOverPsignif_0_EC", "qOverPsignif; q/p significance (lead); Events/bin", 50, 0, 10)));
     allHisto1Dict_EC.insert(make_pair("muon_qOverPsignif_1", ROOT::RDF::TH1DModel("muon_qOverPsignif_1_EC", "qOverPsignif; q/p significance (sub-lead); Events/bin", 50, 0, 10)));
     allHisto1Dict_EC.insert(make_pair("muon_pt_0", ROOT::RDF::TH1DModel("muon_pt_0_EC", "muon_pt; p_{T} (lead) [GeV]; Events/bin", 50, 0, 500)));
@@ -175,7 +183,7 @@ void makeMuonHist(string inputFolder="user.asantra.data23_13p6TeV.00456409.physi
     allHisto1Dict_EC.insert(make_pair("muon_eta_0", ROOT::RDF::TH1DModel("muon_eta_0_EC", "muon_eta; #eta (lead); Events/bin", 108, -2.7, 2.7)));
     allHisto1Dict_EC.insert(make_pair("muon_eta_1", ROOT::RDF::TH1DModel("muon_eta_1_EC", "muon_eta; #eta (sub-lead); Events/bin", 108, -2.7, 2.7)));
 
-    
+    /*
     /// create 2D maps, with manyMaps class
     map<string, manyMaps> allHisto2Dict;
     /// barrel histograms
@@ -188,7 +196,7 @@ void makeMuonHist(string inputFolder="user.asantra.data23_13p6TeV.00456409.physi
     allHisto2Dict_EC.insert(make_pair("muon_eta_vs_phi_0", manyMaps("muon_eta_vs_phi_0", "muon_phi_0", "muon_eta_0", ROOT::RDF::TH2DModel("muon_eta_vs_phi_0", "muon_eta_vs_phi_0; #phi (lead); #eta (lead)", 160, -4, 4, 108, -2.7, 2.7))));
     allHisto2Dict_EC.insert(make_pair("muon_eta_vs_phi_1", manyMaps("muon_eta_vs_phi_1", "muon_phi_1", "muon_eta_1", ROOT::RDF::TH2DModel("muon_eta_vs_phi_1", "muon_eta_vs_phi_1; #phi (sub-lead); #eta (sub-lead)", 160, -4, 4, 108, -2.7, 2.7))));
 
-
+    */
     string treeInS = "analysis";
     string treeInFileS = ""; 
 
@@ -240,6 +248,10 @@ void makeMuonHist(string inputFolder="user.asantra.data23_13p6TeV.00456409.physi
                  /// add new columns to dataframe
                  .Define("mll", "getInvariantMass(muon_pt, muon_eta, muon_phi, muon_e)")
                  .Define("nMuon", "muon_pt.size()")
+                 .Define("muon_meqOverPsigma_0", "muon_meqOverPsigma[0]")
+                 .Define("muon_meqOverPsigma_1", "muon_meqOverPsigma[1]")
+                 .Define("muon_idqOverPsigma_0", "muon_idqOverPsigma[0]")
+                 .Define("muon_idqOverPsigma_1", "muon_idqOverPsigma[1]")
                  .Define("muon_nprecisionLayers_0", "muon_nprecisionLayers[0]")
                  .Define("muon_nprecisionLayers_1", "muon_nprecisionLayers[1]")
                  .Define("muon_qOverPsignif_0", "muon_qOverPsignif[0]")
@@ -279,42 +291,117 @@ void makeMuonHist(string inputFolder="user.asantra.data23_13p6TeV.00456409.physi
                           .Filter("80 < mll && mll < 100");
 
     /// break the events into separate pt and eta bins
-    auto dCutMedium_ptBin1_0  = dCutMedium.Filter("ptBin_0==1");
-    auto dCutMedium_ptBin2_0  = dCutMedium.Filter("ptBin_0==2");
-    auto dCutMedium_ptBin3_0  = dCutMedium.Filter("ptBin_0==3");
-    auto dCutMedium_ptBin4_0  = dCutMedium.Filter("ptBin_0==4");
-    auto dCutMedium_etaBin1_0 = dCutMedium.Filter("etaBin_0==1");
-    auto dCutMedium_etaBin2_0 = dCutMedium.Filter("etaBin_0==2");
-    auto dCutMedium_etaBin3_0 = dCutMedium.Filter("etaBin_0==3");
+    auto dCutMedium_ptBin1_0   = dCutMedium.Filter("ptBin_0==1");
+    auto dCutMedium_ptBin2_0   = dCutMedium.Filter("ptBin_0==2");
+    auto dCutMedium_ptBin3_0   = dCutMedium.Filter("ptBin_0==3");
+    auto dCutMedium_ptBin4_0   = dCutMedium.Filter("ptBin_0==4");
+    auto dCutMedium_ptBin5_0   = dCutMedium.Filter("ptBin_0==5");
+    auto dCutMedium_ptBin6_0   = dCutMedium.Filter("ptBin_0==6");
+    auto dCutMedium_ptBin7_0   = dCutMedium.Filter("ptBin_0==7");
+    auto dCutMedium_ptBin8_0   = dCutMedium.Filter("ptBin_0==8");
+    auto dCutMedium_ptBin9_0   = dCutMedium.Filter("ptBin_0==9");
+    auto dCutMedium_ptBin10_0  = dCutMedium.Filter("ptBin_0==10");
 
-    auto dCutMedium_ptBin1_1  = dCutMedium.Filter("ptBin_1==1");
-    auto dCutMedium_ptBin2_1  = dCutMedium.Filter("ptBin_1==2");
-    auto dCutMedium_ptBin3_1  = dCutMedium.Filter("ptBin_1==3");
-    auto dCutMedium_ptBin4_1  = dCutMedium.Filter("ptBin_1==4");
-    auto dCutMedium_etaBin1_1 = dCutMedium.Filter("etaBin_1==1");
-    auto dCutMedium_etaBin2_1 = dCutMedium.Filter("etaBin_1==2");
-    auto dCutMedium_etaBin3_1 = dCutMedium.Filter("etaBin_1==3");
+
+    auto dCutMedium_etaBin1_0  = dCutMedium.Filter("etaBin_0==1");
+    auto dCutMedium_etaBin2_0  = dCutMedium.Filter("etaBin_0==2");
+    auto dCutMedium_etaBin3_0  = dCutMedium.Filter("etaBin_0==3");
+    auto dCutMedium_etaBin4_0  = dCutMedium.Filter("etaBin_0==4");
+    auto dCutMedium_etaBin5_0  = dCutMedium.Filter("etaBin_0==5");
+    auto dCutMedium_etaBin6_0  = dCutMedium.Filter("etaBin_0==6");
+    auto dCutMedium_etaBin7_0  = dCutMedium.Filter("etaBin_0==7");
+    auto dCutMedium_etaBin8_0  = dCutMedium.Filter("etaBin_0==8");
+    auto dCutMedium_etaBin9_0  = dCutMedium.Filter("etaBin_0==9");
+    auto dCutMedium_etaBin10_0 = dCutMedium.Filter("etaBin_0==10");
+    
+    
+    
+    /// break the events into separate pt and eta bins
+    auto dCutMedium_ptBin1_1   = dCutMedium.Filter("ptBin_1==1");
+    auto dCutMedium_ptBin2_1   = dCutMedium.Filter("ptBin_1==2");
+    auto dCutMedium_ptBin3_1   = dCutMedium.Filter("ptBin_1==3");
+    auto dCutMedium_ptBin4_1   = dCutMedium.Filter("ptBin_1==4");
+    auto dCutMedium_ptBin5_1   = dCutMedium.Filter("ptBin_1==5");
+    auto dCutMedium_ptBin6_1   = dCutMedium.Filter("ptBin_1==6");
+    auto dCutMedium_ptBin7_1   = dCutMedium.Filter("ptBin_1==7");
+    auto dCutMedium_ptBin8_1   = dCutMedium.Filter("ptBin_1==8");
+    auto dCutMedium_ptBin9_1   = dCutMedium.Filter("ptBin_1==9");
+    auto dCutMedium_ptBin10_1  = dCutMedium.Filter("ptBin_1==10");
+
+
+    auto dCutMedium_etaBin1_1  = dCutMedium.Filter("etaBin_1==1");
+    auto dCutMedium_etaBin2_1  = dCutMedium.Filter("etaBin_1==2");
+    auto dCutMedium_etaBin3_1  = dCutMedium.Filter("etaBin_1==3");
+    auto dCutMedium_etaBin4_1  = dCutMedium.Filter("etaBin_1==4");
+    auto dCutMedium_etaBin5_1  = dCutMedium.Filter("etaBin_1==5");
+    auto dCutMedium_etaBin6_1  = dCutMedium.Filter("etaBin_1==6");
+    auto dCutMedium_etaBin7_1  = dCutMedium.Filter("etaBin_1==7");
+    auto dCutMedium_etaBin8_1  = dCutMedium.Filter("etaBin_1==8");
+    auto dCutMedium_etaBin9_1  = dCutMedium.Filter("etaBin_1==9");
+    auto dCutMedium_etaBin10_1 = dCutMedium.Filter("etaBin_1==10");
+
+
+
+    
 
     auto dCutHigh   = dCut.Filter("!(std::abs(muon_eta.at(0)) > 1.05) && !(std::abs(muon_eta.at(1)) > 1.05)")
                            .Filter("muon_HighPt[0] && muon_HighPt[1]")
                            .Filter("80 < mll && mll < 100");
 
-    /// break the events into separate pt and eta bins
-    auto dCutHigh_ptBin1_0  = dCutHigh.Filter("ptBin_0==1");
-    auto dCutHigh_ptBin2_0  = dCutHigh.Filter("ptBin_0==2");
-    auto dCutHigh_ptBin3_0  = dCutHigh.Filter("ptBin_0==3");
-    auto dCutHigh_ptBin4_0  = dCutHigh.Filter("ptBin_0==4");
-    auto dCutHigh_etaBin1_0 = dCutHigh.Filter("etaBin_0==1");
-    auto dCutHigh_etaBin2_0 = dCutHigh.Filter("etaBin_0==2");
-    auto dCutHigh_etaBin3_0 = dCutHigh.Filter("etaBin_0==3");
 
-    auto dCutHigh_ptBin1_1  = dCutHigh.Filter("ptBin_1==1");
-    auto dCutHigh_ptBin2_1  = dCutHigh.Filter("ptBin_1==2");
-    auto dCutHigh_ptBin3_1  = dCutHigh.Filter("ptBin_1==3");
-    auto dCutHigh_ptBin4_1  = dCutHigh.Filter("ptBin_1==4");
-    auto dCutHigh_etaBin1_1 = dCutHigh.Filter("etaBin_1==1");
-    auto dCutHigh_etaBin2_1 = dCutHigh.Filter("etaBin_1==2");
-    auto dCutHigh_etaBin3_1 = dCutHigh.Filter("etaBin_1==3");
+
+    /// break the events into separate pt and eta bins
+    auto dCutHigh_ptBin1_0   = dCutHigh.Filter("ptBin_0==1");
+    auto dCutHigh_ptBin2_0   = dCutHigh.Filter("ptBin_0==2");
+    auto dCutHigh_ptBin3_0   = dCutHigh.Filter("ptBin_0==3");
+    auto dCutHigh_ptBin4_0   = dCutHigh.Filter("ptBin_0==4");
+    auto dCutHigh_ptBin5_0   = dCutHigh.Filter("ptBin_0==5");
+    auto dCutHigh_ptBin6_0   = dCutHigh.Filter("ptBin_0==6");
+    auto dCutHigh_ptBin7_0   = dCutHigh.Filter("ptBin_0==7");
+    auto dCutHigh_ptBin8_0   = dCutHigh.Filter("ptBin_0==8");
+    auto dCutHigh_ptBin9_0   = dCutHigh.Filter("ptBin_0==9");
+    auto dCutHigh_ptBin10_0  = dCutHigh.Filter("ptBin_0==10");
+
+
+    auto dCutHigh_etaBin1_0  = dCutHigh.Filter("etaBin_0==1");
+    auto dCutHigh_etaBin2_0  = dCutHigh.Filter("etaBin_0==2");
+    auto dCutHigh_etaBin3_0  = dCutHigh.Filter("etaBin_0==3");
+    auto dCutHigh_etaBin4_0  = dCutHigh.Filter("etaBin_0==4");
+    auto dCutHigh_etaBin5_0  = dCutHigh.Filter("etaBin_0==5");
+    auto dCutHigh_etaBin6_0  = dCutHigh.Filter("etaBin_0==6");
+    auto dCutHigh_etaBin7_0  = dCutHigh.Filter("etaBin_0==7");
+    auto dCutHigh_etaBin8_0  = dCutHigh.Filter("etaBin_0==8");
+    auto dCutHigh_etaBin9_0  = dCutHigh.Filter("etaBin_0==9");
+    auto dCutHigh_etaBin10_0 = dCutHigh.Filter("etaBin_0==10");
+    
+    
+    
+    /// break the events into separate pt and eta bins
+    auto dCutHigh_ptBin1_1   = dCutHigh.Filter("ptBin_1==1");
+    auto dCutHigh_ptBin2_1   = dCutHigh.Filter("ptBin_1==2");
+    auto dCutHigh_ptBin3_1   = dCutHigh.Filter("ptBin_1==3");
+    auto dCutHigh_ptBin4_1   = dCutHigh.Filter("ptBin_1==4");
+    auto dCutHigh_ptBin5_1   = dCutHigh.Filter("ptBin_1==5");
+    auto dCutHigh_ptBin6_1   = dCutHigh.Filter("ptBin_1==6");
+    auto dCutHigh_ptBin7_1   = dCutHigh.Filter("ptBin_1==7");
+    auto dCutHigh_ptBin8_1   = dCutHigh.Filter("ptBin_1==8");
+    auto dCutHigh_ptBin9_1   = dCutHigh.Filter("ptBin_1==9");
+    auto dCutHigh_ptBin10_1  = dCutHigh.Filter("ptBin_1==10");
+
+
+    auto dCutHigh_etaBin1_1  = dCutHigh.Filter("etaBin_1==1");
+    auto dCutHigh_etaBin2_1  = dCutHigh.Filter("etaBin_1==2");
+    auto dCutHigh_etaBin3_1  = dCutHigh.Filter("etaBin_1==3");
+    auto dCutHigh_etaBin4_1  = dCutHigh.Filter("etaBin_1==4");
+    auto dCutHigh_etaBin5_1  = dCutHigh.Filter("etaBin_1==5");
+    auto dCutHigh_etaBin6_1  = dCutHigh.Filter("etaBin_1==6");
+    auto dCutHigh_etaBin7_1  = dCutHigh.Filter("etaBin_1==7");
+    auto dCutHigh_etaBin8_1  = dCutHigh.Filter("etaBin_1==8");
+    auto dCutHigh_etaBin9_1  = dCutHigh.Filter("etaBin_1==9");
+    auto dCutHigh_etaBin10_1 = dCutHigh.Filter("etaBin_1==10");
+
+
+    
 
     // auto dCutLow    = dCut.Filter("!(std::abs(muon_eta.at(0)) > 1.05) && !(std::abs(muon_eta.at(1)) > 1.05)")
     //                       .Filter("muon_LowPt[0] && muon_LowPt[1]")
@@ -327,115 +414,169 @@ void makeMuonHist(string inputFolder="user.asantra.data23_13p6TeV.00456409.physi
 
     /// map to store histograms
     map<string, TH1D*> prepared1DHistogram;
-    map<string, TH2D*> prepared2DHistogram;
+    // map<string, TH2D*> prepared2DHistogram;
 
     //////////////////////////////
     /// medium working point /////
     //////////////////////////////
     prepare1DHistogram(dCutMedium, "medium", allHisto1Dict, prepared1DHistogram);
-    prepare2DHistogram(dCutMedium, "medium", allHisto2Dict, prepared2DHistogram);
+    // prepare2DHistogram(dCutMedium, "medium", allHisto2Dict, prepared2DHistogram);
 
     /// getting binned distributions
     // pt bins
     prepare1DHistogram(dCutMedium_ptBin1_0, "medium_ptBin1_0", allHisto1Dict, prepared1DHistogram);
-    prepare2DHistogram(dCutMedium_ptBin1_0, "medium_ptBin1_0", allHisto2Dict, prepared2DHistogram);
+    // prepare2DHistogram(dCutMedium_ptBin1_0, "medium_ptBin1_0", allHisto2Dict, prepared2DHistogram);
 
     prepare1DHistogram(dCutMedium_ptBin2_0, "medium_ptBin2_0", allHisto1Dict, prepared1DHistogram);
-    prepare2DHistogram(dCutMedium_ptBin2_0, "medium_ptBin2_0", allHisto2Dict, prepared2DHistogram);
+    // prepare2DHistogram(dCutMedium_ptBin2_0, "medium_ptBin2_0", allHisto2Dict, prepared2DHistogram);
 
     prepare1DHistogram(dCutMedium_ptBin3_0, "medium_ptBin3_0", allHisto1Dict, prepared1DHistogram);
-    prepare2DHistogram(dCutMedium_ptBin3_0, "medium_ptBin3_0", allHisto2Dict, prepared2DHistogram);
+    // prepare2DHistogram(dCutMedium_ptBin3_0, "medium_ptBin3_0", allHisto2Dict, prepared2DHistogram);
 
     prepare1DHistogram(dCutMedium_ptBin4_0, "medium_ptBin4_0", allHisto1Dict, prepared1DHistogram);
-    prepare2DHistogram(dCutMedium_ptBin4_0, "medium_ptBin4_0", allHisto2Dict, prepared2DHistogram);
+    // prepare2DHistogram(dCutMedium_ptBin4_0, "medium_ptBin4_0", allHisto2Dict, prepared2DHistogram);
+    prepare1DHistogram(dCutMedium_ptBin5_0, "medium_ptBin5_0", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutMedium_ptBin6_0, "medium_ptBin6_0", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutMedium_ptBin7_0, "medium_ptBin7_0", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutMedium_ptBin8_0, "medium_ptBin8_0", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutMedium_ptBin9_0, "medium_ptBin9_0", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutMedium_ptBin10_0, "medium_ptBin10_0", allHisto1Dict, prepared1DHistogram);
+
 
     /// eta bins
     prepare1DHistogram(dCutMedium_etaBin1_0, "medium_etaBin1_0", allHisto1Dict, prepared1DHistogram);
-    prepare2DHistogram(dCutMedium_etaBin1_0, "medium_etaBin1_0", allHisto2Dict, prepared2DHistogram);
+    // prepare2DHistogram(dCutMedium_etaBin1_0, "medium_etaBin1_0", allHisto2Dict, prepared2DHistogram);
 
     prepare1DHistogram(dCutMedium_etaBin2_0, "medium_etaBin2_0", allHisto1Dict, prepared1DHistogram);
-    prepare2DHistogram(dCutMedium_etaBin2_0, "medium_etaBin2_0", allHisto2Dict, prepared2DHistogram);
+    // prepare2DHistogram(dCutMedium_etaBin2_0, "medium_etaBin2_0", allHisto2Dict, prepared2DHistogram);
 
     prepare1DHistogram(dCutMedium_etaBin3_0, "medium_etaBin3_0", allHisto1Dict, prepared1DHistogram);
-    prepare2DHistogram(dCutMedium_etaBin3_0, "medium_etaBin3_0", allHisto2Dict, prepared2DHistogram);
+    // prepare2DHistogram(dCutMedium_etaBin3_0, "medium_etaBin3_0", allHisto2Dict, prepared2DHistogram);
+    prepare1DHistogram(dCutMedium_etaBin4_0, "medium_etaBin4_0", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutMedium_etaBin5_0, "medium_etaBin5_0", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutMedium_etaBin6_0, "medium_etaBin6_0", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutMedium_etaBin7_0, "medium_etaBin7_0", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutMedium_etaBin8_0, "medium_etaBin8_0", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutMedium_etaBin9_0, "medium_etaBin9_0", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutMedium_etaBin10_0, "medium_etaBin10_0", allHisto1Dict, prepared1DHistogram);
     
     // pt bins
     prepare1DHistogram(dCutMedium_ptBin1_1, "medium_ptBin1_1", allHisto1Dict, prepared1DHistogram);
-    prepare2DHistogram(dCutMedium_ptBin1_1, "medium_ptBin1_1", allHisto2Dict, prepared2DHistogram);
+    // prepare2DHistogram(dCutMedium_ptBin1_1, "medium_ptBin1_1", allHisto2Dict, prepared2DHistogram);
 
     prepare1DHistogram(dCutMedium_ptBin2_1, "medium_ptBin2_1", allHisto1Dict, prepared1DHistogram);
-    prepare2DHistogram(dCutMedium_ptBin2_1, "medium_ptBin2_1", allHisto2Dict, prepared2DHistogram);
+    // prepare2DHistogram(dCutMedium_ptBin2_1, "medium_ptBin2_1", allHisto2Dict, prepared2DHistogram);
 
     prepare1DHistogram(dCutMedium_ptBin3_1, "medium_ptBin3_1", allHisto1Dict, prepared1DHistogram);
-    prepare2DHistogram(dCutMedium_ptBin3_1, "medium_ptBin3_1", allHisto2Dict, prepared2DHistogram);
+    // prepare2DHistogram(dCutMedium_ptBin3_1, "medium_ptBin3_1", allHisto2Dict, prepared2DHistogram);
 
     prepare1DHistogram(dCutMedium_ptBin4_1, "medium_ptBin4_1", allHisto1Dict, prepared1DHistogram);
-    prepare2DHistogram(dCutMedium_ptBin4_1, "medium_ptBin4_1", allHisto2Dict, prepared2DHistogram);
+    // prepare2DHistogram(dCutMedium_ptBin4_1, "medium_ptBin4_1", allHisto2Dict, prepared2DHistogram);
+    prepare1DHistogram(dCutMedium_ptBin5_1, "medium_ptBin5_1", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutMedium_ptBin6_1, "medium_ptBin6_1", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutMedium_ptBin7_1, "medium_ptBin7_1", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutMedium_ptBin8_1, "medium_ptBin8_1", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutMedium_ptBin9_1, "medium_ptBin9_1", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutMedium_ptBin10_1, "medium_ptBin10_1", allHisto1Dict, prepared1DHistogram);
 
     /// eta bins
     prepare1DHistogram(dCutMedium_etaBin1_1, "medium_etaBin1_1", allHisto1Dict, prepared1DHistogram);
-    prepare2DHistogram(dCutMedium_etaBin1_1, "medium_etaBin1_1", allHisto2Dict, prepared2DHistogram);
+    // prepare2DHistogram(dCutMedium_etaBin1_1, "medium_etaBin1_1", allHisto2Dict, prepared2DHistogram);
 
     prepare1DHistogram(dCutMedium_etaBin2_1, "medium_etaBin2_1", allHisto1Dict, prepared1DHistogram);
-    prepare2DHistogram(dCutMedium_etaBin2_1, "medium_etaBin2_1", allHisto2Dict, prepared2DHistogram);
+    // prepare2DHistogram(dCutMedium_etaBin2_1, "medium_etaBin2_1", allHisto2Dict, prepared2DHistogram);
 
     prepare1DHistogram(dCutMedium_etaBin3_1, "medium_etaBin3_1", allHisto1Dict, prepared1DHistogram);
-    prepare2DHistogram(dCutMedium_etaBin3_1, "medium_etaBin3_1", allHisto2Dict, prepared2DHistogram);
+    // prepare2DHistogram(dCutMedium_etaBin3_1, "medium_etaBin3_1", allHisto2Dict, prepared2DHistogram);
+    prepare1DHistogram(dCutMedium_etaBin4_1, "medium_etaBin4_1", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutMedium_etaBin5_1, "medium_etaBin5_1", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutMedium_etaBin6_1, "medium_etaBin6_1", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutMedium_etaBin7_1, "medium_etaBin7_1", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutMedium_etaBin8_1, "medium_etaBin8_1", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutMedium_etaBin9_1, "medium_etaBin9_1", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutMedium_etaBin10_1, "medium_etaBin10_1", allHisto1Dict, prepared1DHistogram);
     
     
     //////////////////////////////
     /// high-pt working point ////
     //////////////////////////////
     prepare1DHistogram(dCutHigh, "highpt", allHisto1Dict, prepared1DHistogram);
-    prepare2DHistogram(dCutHigh, "highpt", allHisto2Dict, prepared2DHistogram);
+    // prepare2DHistogram(dCutHigh, "highpt", allHisto2Dict, prepared2DHistogram);
 
 
     /// getting binned distributions
     // pt bins
     prepare1DHistogram(dCutHigh_ptBin1_0, "highpt_ptBin1_0", allHisto1Dict, prepared1DHistogram);
-    prepare2DHistogram(dCutHigh_ptBin1_0, "highpt_ptBin1_0", allHisto2Dict, prepared2DHistogram);
+    // prepare2DHistogram(dCutHigh_ptBin1_0, "highpt_ptBin1_0", allHisto2Dict, prepared2DHistogram);
 
     prepare1DHistogram(dCutHigh_ptBin2_0, "highpt_ptBin2_0", allHisto1Dict, prepared1DHistogram);
-    prepare2DHistogram(dCutHigh_ptBin2_0, "highpt_ptBin2_0", allHisto2Dict, prepared2DHistogram);
+    // prepare2DHistogram(dCutHigh_ptBin2_0, "highpt_ptBin2_0", allHisto2Dict, prepared2DHistogram);
 
     prepare1DHistogram(dCutHigh_ptBin3_0, "highpt_ptBin3_0", allHisto1Dict, prepared1DHistogram);
-    prepare2DHistogram(dCutHigh_ptBin3_0, "highpt_ptBin3_0", allHisto2Dict, prepared2DHistogram);
+    // prepare2DHistogram(dCutHigh_ptBin3_0, "highpt_ptBin3_0", allHisto2Dict, prepared2DHistogram);
 
     prepare1DHistogram(dCutHigh_ptBin4_0, "highpt_ptBin4_0", allHisto1Dict, prepared1DHistogram);
-    prepare2DHistogram(dCutHigh_ptBin4_0, "highpt_ptBin4_0", allHisto2Dict, prepared2DHistogram);
+    // prepare2DHistogram(dCutHigh_ptBin4_0, "highpt_ptBin4_0", allHisto2Dict, prepared2DHistogram);
+    prepare1DHistogram(dCutHigh_ptBin5_0, "highpt_ptBin5_0", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutHigh_ptBin6_0, "highpt_ptBin6_0", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutHigh_ptBin7_0, "highpt_ptBin7_0", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutHigh_ptBin8_0, "highpt_ptBin8_0", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutHigh_ptBin9_0, "highpt_ptBin9_0", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutHigh_ptBin10_0, "highpt_ptBin10_0", allHisto1Dict, prepared1DHistogram);
 
     /// eta bins
     prepare1DHistogram(dCutHigh_etaBin1_0, "highpt_etaBin1_0", allHisto1Dict, prepared1DHistogram);
-    prepare2DHistogram(dCutHigh_etaBin1_0, "highpt_etaBin1_0", allHisto2Dict, prepared2DHistogram);
+    // prepare2DHistogram(dCutHigh_etaBin1_0, "highpt_etaBin1_0", allHisto2Dict, prepared2DHistogram);
 
     prepare1DHistogram(dCutHigh_etaBin2_0, "highpt_etaBin2_0", allHisto1Dict, prepared1DHistogram);
-    prepare2DHistogram(dCutHigh_etaBin2_0, "highpt_etaBin2", allHisto2Dict, prepared2DHistogram);
+    // prepare2DHistogram(dCutHigh_etaBin2_0, "highpt_etaBin2", allHisto2Dict, prepared2DHistogram);
 
     prepare1DHistogram(dCutHigh_etaBin3_0, "highpt_etaBin3_0", allHisto1Dict, prepared1DHistogram);
-    prepare2DHistogram(dCutHigh_etaBin3_0, "highpt_etaBin3_0", allHisto2Dict, prepared2DHistogram);
+    // prepare2DHistogram(dCutHigh_etaBin3_0, "highpt_etaBin3_0", allHisto2Dict, prepared2DHistogram);
+    prepare1DHistogram(dCutHigh_etaBin4_0, "highpt_etaBin4_0", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutHigh_etaBin5_0, "highpt_etaBin5_0", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutHigh_etaBin6_0, "highpt_etaBin6_0", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutHigh_etaBin7_0, "highpt_etaBin7_0", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutHigh_etaBin8_0, "highpt_etaBin8_0", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutHigh_etaBin9_0, "highpt_etaBin9_0", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutHigh_etaBin10_0, "highpt_etaBin10_0", allHisto1Dict, prepared1DHistogram);
 
     // pt bins
     prepare1DHistogram(dCutHigh_ptBin1_1, "highpt_ptBin1_1", allHisto1Dict, prepared1DHistogram);
-    prepare2DHistogram(dCutHigh_ptBin1_1, "highpt_ptBin1_1", allHisto2Dict, prepared2DHistogram);
+    // prepare2DHistogram(dCutHigh_ptBin1_1, "highpt_ptBin1_1", allHisto2Dict, prepared2DHistogram);
 
     prepare1DHistogram(dCutHigh_ptBin2_1, "highpt_ptBin2_1", allHisto1Dict, prepared1DHistogram);
-    prepare2DHistogram(dCutHigh_ptBin2_1, "highpt_ptBin2_1", allHisto2Dict, prepared2DHistogram);
+    // prepare2DHistogram(dCutHigh_ptBin2_1, "highpt_ptBin2_1", allHisto2Dict, prepared2DHistogram);
 
     prepare1DHistogram(dCutHigh_ptBin3_1, "highpt_ptBin3_1", allHisto1Dict, prepared1DHistogram);
-    prepare2DHistogram(dCutHigh_ptBin3_1, "highpt_ptBin3_1", allHisto2Dict, prepared2DHistogram);
+    // prepare2DHistogram(dCutHigh_ptBin3_1, "highpt_ptBin3_1", allHisto2Dict, prepared2DHistogram);
 
     prepare1DHistogram(dCutHigh_ptBin4_1, "highpt_ptBin4_1", allHisto1Dict, prepared1DHistogram);
-    prepare2DHistogram(dCutHigh_ptBin4_1, "highpt_ptBin4_1", allHisto2Dict, prepared2DHistogram);
+    // prepare2DHistogram(dCutHigh_ptBin4_1, "highpt_ptBin4_1", allHisto2Dict, prepared2DHistogram);
+    prepare1DHistogram(dCutHigh_ptBin5_1, "highpt_ptBin5_1", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutHigh_ptBin6_1, "highpt_ptBin6_1", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutHigh_ptBin7_1, "highpt_ptBin7_1", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutHigh_ptBin8_1, "highpt_ptBin8_1", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutHigh_ptBin9_1, "highpt_ptBin9_1", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutHigh_ptBin10_1, "highpt_ptBin10_1", allHisto1Dict, prepared1DHistogram);
 
     /// eta bins
     prepare1DHistogram(dCutHigh_etaBin1_1, "highpt_etaBin1_1", allHisto1Dict, prepared1DHistogram);
-    prepare2DHistogram(dCutHigh_etaBin1_1, "highpt_etaBin1_1", allHisto2Dict, prepared2DHistogram);
+    // prepare2DHistogram(dCutHigh_etaBin1_1, "highpt_etaBin1_1", allHisto2Dict, prepared2DHistogram);
 
     prepare1DHistogram(dCutHigh_etaBin2_1, "highpt_etaBin2_1", allHisto1Dict, prepared1DHistogram);
-    prepare2DHistogram(dCutHigh_etaBin2_1, "highpt_etaBin2", allHisto2Dict, prepared2DHistogram);
+    // prepare2DHistogram(dCutHigh_etaBin2_1, "highpt_etaBin2", allHisto2Dict, prepared2DHistogram);
 
     prepare1DHistogram(dCutHigh_etaBin3_1, "highpt_etaBin3_1", allHisto1Dict, prepared1DHistogram);
-    prepare2DHistogram(dCutHigh_etaBin3_1, "highpt_etaBin3_1", allHisto2Dict, prepared2DHistogram);
+    // prepare2DHistogram(dCutHigh_etaBin3_1, "highpt_etaBin3_1", allHisto2Dict, prepared2DHistogram);
+    prepare1DHistogram(dCutHigh_etaBin4_1, "highpt_etaBin4_1", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutHigh_etaBin5_1, "highpt_etaBin5_1", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutHigh_etaBin6_1, "highpt_etaBin6_1", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutHigh_etaBin7_1, "highpt_etaBin7_1", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutHigh_etaBin8_1, "highpt_etaBin8_1", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutHigh_etaBin9_1, "highpt_etaBin9_1", allHisto1Dict, prepared1DHistogram);
+    prepare1DHistogram(dCutHigh_etaBin10_1, "highpt_etaBin10_1", allHisto1Dict, prepared1DHistogram);
+
 
 
     /////////////////////////////////////////////////
@@ -496,107 +637,107 @@ void makeMuonHist(string inputFolder="user.asantra.data23_13p6TeV.00456409.physi
     /// medium working point /////
     //////////////////////////////
     prepare1DHistogram(dCutMedium_EC, "EC_medium", allHisto1Dict_EC, prepared1DHistogram_EC);
-    prepare2DHistogram(dCutMedium_EC, "EC_medium", allHisto2Dict_EC, prepared2DHistogram_EC);
+    // prepare2DHistogram(dCutMedium_EC, "EC_medium", allHisto2Dict_EC, prepared2DHistogram_EC);
 
     /// use pt bin histograms
     prepare1DHistogram(dCutMedium_EC_ptBin1_0, "EC_medium_ptBin1_0", allHisto1Dict_EC, prepared1DHistogram_EC);
-    prepare2DHistogram(dCutMedium_EC_ptBin1_0, "EC_medium_ptBin1_0", allHisto2Dict_EC, prepared2DHistogram_EC);
+    // prepare2DHistogram(dCutMedium_EC_ptBin1_0, "EC_medium_ptBin1_0", allHisto2Dict_EC, prepared2DHistogram_EC);
 
     prepare1DHistogram(dCutMedium_EC_ptBin2_0, "EC_medium_ptBin2_0", allHisto1Dict_EC, prepared1DHistogram_EC);
-    prepare2DHistogram(dCutMedium_EC_ptBin2_0, "EC_medium_ptBin2_0", allHisto2Dict_EC, prepared2DHistogram_EC);
+    // prepare2DHistogram(dCutMedium_EC_ptBin2_0, "EC_medium_ptBin2_0", allHisto2Dict_EC, prepared2DHistogram_EC);
 
     prepare1DHistogram(dCutMedium_EC_ptBin3_0, "EC_medium_ptBin3_0", allHisto1Dict_EC, prepared1DHistogram_EC);
-    prepare2DHistogram(dCutMedium_EC_ptBin3_0, "EC_medium_ptBin3_0", allHisto2Dict_EC, prepared2DHistogram_EC);
+    // prepare2DHistogram(dCutMedium_EC_ptBin3_0, "EC_medium_ptBin3_0", allHisto2Dict_EC, prepared2DHistogram_EC);
 
     prepare1DHistogram(dCutMedium_EC_ptBin4_0, "EC_medium_ptBin4_0", allHisto1Dict_EC, prepared1DHistogram_EC);
-    prepare2DHistogram(dCutMedium_EC_ptBin4_0, "EC_medium_ptBin4_0", allHisto2Dict_EC, prepared2DHistogram_EC);
+    // prepare2DHistogram(dCutMedium_EC_ptBin4_0, "EC_medium_ptBin4_0", allHisto2Dict_EC, prepared2DHistogram_EC);
 
     /// eta bins
     prepare1DHistogram(dCutMedium_EC_etaBin1_0, "EC_medium_etaBin1_0", allHisto1Dict_EC, prepared1DHistogram_EC);
-    prepare2DHistogram(dCutMedium_EC_etaBin1_0, "EC_medium_etaBin1_0", allHisto2Dict_EC, prepared2DHistogram_EC);
+    // prepare2DHistogram(dCutMedium_EC_etaBin1_0, "EC_medium_etaBin1_0", allHisto2Dict_EC, prepared2DHistogram_EC);
 
     prepare1DHistogram(dCutMedium_EC_etaBin2_0, "EC_medium_etaBin2_0", allHisto1Dict_EC, prepared1DHistogram_EC);
-    prepare2DHistogram(dCutMedium_EC_etaBin2_0, "EC_medium_etaBin2_0", allHisto2Dict_EC, prepared2DHistogram_EC);
+    // prepare2DHistogram(dCutMedium_EC_etaBin2_0, "EC_medium_etaBin2_0", allHisto2Dict_EC, prepared2DHistogram_EC);
 
     prepare1DHistogram(dCutMedium_EC_etaBin3_0, "EC_medium_etaBin3_0", allHisto1Dict_EC, prepared1DHistogram_EC);
-    prepare2DHistogram(dCutMedium_EC_etaBin3_0, "EC_medium_etaBin3_0", allHisto2Dict_EC, prepared2DHistogram_EC);
+    // prepare2DHistogram(dCutMedium_EC_etaBin3_0, "EC_medium_etaBin3_0", allHisto2Dict_EC, prepared2DHistogram_EC);
 
     
     /// use pt bin histograms
     prepare1DHistogram(dCutMedium_EC_ptBin1_1, "EC_medium_ptBin1_1", allHisto1Dict_EC, prepared1DHistogram_EC);
-    prepare2DHistogram(dCutMedium_EC_ptBin1_1, "EC_medium_ptBin1_1", allHisto2Dict_EC, prepared2DHistogram_EC);
+    // prepare2DHistogram(dCutMedium_EC_ptBin1_1, "EC_medium_ptBin1_1", allHisto2Dict_EC, prepared2DHistogram_EC);
 
     prepare1DHistogram(dCutMedium_EC_ptBin2_1, "EC_medium_ptBin2_1", allHisto1Dict_EC, prepared1DHistogram_EC);
-    prepare2DHistogram(dCutMedium_EC_ptBin2_1, "EC_medium_ptBin2_1", allHisto2Dict_EC, prepared2DHistogram_EC);
+    // prepare2DHistogram(dCutMedium_EC_ptBin2_1, "EC_medium_ptBin2_1", allHisto2Dict_EC, prepared2DHistogram_EC);
 
     prepare1DHistogram(dCutMedium_EC_ptBin3_1, "EC_medium_ptBin3_1", allHisto1Dict_EC, prepared1DHistogram_EC);
-    prepare2DHistogram(dCutMedium_EC_ptBin3_1, "EC_medium_ptBin3_1", allHisto2Dict_EC, prepared2DHistogram_EC);
+    // prepare2DHistogram(dCutMedium_EC_ptBin3_1, "EC_medium_ptBin3_1", allHisto2Dict_EC, prepared2DHistogram_EC);
 
     prepare1DHistogram(dCutMedium_EC_ptBin4_1, "EC_medium_ptBin4_1", allHisto1Dict_EC, prepared1DHistogram_EC);
-    prepare2DHistogram(dCutMedium_EC_ptBin4_1, "EC_medium_ptBin4_1", allHisto2Dict_EC, prepared2DHistogram_EC);
+    // prepare2DHistogram(dCutMedium_EC_ptBin4_1, "EC_medium_ptBin4_1", allHisto2Dict_EC, prepared2DHistogram_EC);
 
     /// eta bins
     prepare1DHistogram(dCutMedium_EC_etaBin1_1, "EC_medium_etaBin1_1", allHisto1Dict_EC, prepared1DHistogram_EC);
-    prepare2DHistogram(dCutMedium_EC_etaBin1_1, "EC_medium_etaBin1_1", allHisto2Dict_EC, prepared2DHistogram_EC);
+    // prepare2DHistogram(dCutMedium_EC_etaBin1_1, "EC_medium_etaBin1_1", allHisto2Dict_EC, prepared2DHistogram_EC);
 
     prepare1DHistogram(dCutMedium_EC_etaBin2_1, "EC_medium_etaBin2_1", allHisto1Dict_EC, prepared1DHistogram_EC);
-    prepare2DHistogram(dCutMedium_EC_etaBin2_1, "EC_medium_etaBin2_1", allHisto2Dict_EC, prepared2DHistogram_EC);
+    // prepare2DHistogram(dCutMedium_EC_etaBin2_1, "EC_medium_etaBin2_1", allHisto2Dict_EC, prepared2DHistogram_EC);
 
     prepare1DHistogram(dCutMedium_EC_etaBin3_1, "EC_medium_etaBin3_1", allHisto1Dict_EC, prepared1DHistogram_EC);
-    prepare2DHistogram(dCutMedium_EC_etaBin3_1, "EC_medium_etaBin3_1", allHisto2Dict_EC, prepared2DHistogram_EC);
+    // prepare2DHistogram(dCutMedium_EC_etaBin3_1, "EC_medium_etaBin3_1", allHisto2Dict_EC, prepared2DHistogram_EC);
 
     
     //////////////////////////////
     /// high-pt working point ////
     //////////////////////////////
     prepare1DHistogram(dCutHigh_EC, "EC_highpt", allHisto1Dict_EC, prepared1DHistogram_EC);
-    prepare2DHistogram(dCutHigh_EC, "EC_highpt", allHisto2Dict_EC, prepared2DHistogram_EC);
+    // prepare2DHistogram(dCutHigh_EC, "EC_highpt", allHisto2Dict_EC, prepared2DHistogram_EC);
 
     /// pt bins
     prepare1DHistogram(dCutHigh_EC_ptBin1_0, "EC_highpt_ptBin1_0", allHisto1Dict_EC, prepared1DHistogram_EC);
-    prepare2DHistogram(dCutHigh_EC_ptBin1_0, "EC_highpt_ptBin1_0", allHisto2Dict_EC, prepared2DHistogram_EC);
+    // prepare2DHistogram(dCutHigh_EC_ptBin1_0, "EC_highpt_ptBin1_0", allHisto2Dict_EC, prepared2DHistogram_EC);
 
     prepare1DHistogram(dCutHigh_EC_ptBin2_0, "EC_highpt_ptBin2_0", allHisto1Dict_EC, prepared1DHistogram_EC);
-    prepare2DHistogram(dCutHigh_EC_ptBin2_0, "EC_highpt_ptBin2_0", allHisto2Dict_EC, prepared2DHistogram_EC);
+    // prepare2DHistogram(dCutHigh_EC_ptBin2_0, "EC_highpt_ptBin2_0", allHisto2Dict_EC, prepared2DHistogram_EC);
 
     prepare1DHistogram(dCutHigh_EC_ptBin3_0, "EC_highpt_ptBin3_0", allHisto1Dict_EC, prepared1DHistogram_EC);
-    prepare2DHistogram(dCutHigh_EC_ptBin3_0, "EC_highpt_ptBin3_0", allHisto2Dict_EC, prepared2DHistogram_EC);
+    // prepare2DHistogram(dCutHigh_EC_ptBin3_0, "EC_highpt_ptBin3_0", allHisto2Dict_EC, prepared2DHistogram_EC);
 
     prepare1DHistogram(dCutHigh_EC_ptBin4_0, "EC_highpt_ptBin4_0", allHisto1Dict_EC, prepared1DHistogram_EC);
-    prepare2DHistogram(dCutHigh_EC_ptBin4_0, "EC_highpt_ptBin4_0", allHisto2Dict_EC, prepared2DHistogram_EC);
+    // prepare2DHistogram(dCutHigh_EC_ptBin4_0, "EC_highpt_ptBin4_0", allHisto2Dict_EC, prepared2DHistogram_EC);
 
     /// eta bins
     prepare1DHistogram(dCutHigh_EC_etaBin1_0, "EC_highpt_etaBin1_0", allHisto1Dict_EC, prepared1DHistogram_EC);
-    prepare2DHistogram(dCutHigh_EC_etaBin1_0, "EC_highpt_etaBin1_0", allHisto2Dict_EC, prepared2DHistogram_EC);
+    // prepare2DHistogram(dCutHigh_EC_etaBin1_0, "EC_highpt_etaBin1_0", allHisto2Dict_EC, prepared2DHistogram_EC);
 
     prepare1DHistogram(dCutHigh_EC_etaBin2_0, "EC_highpt_etaBin2_0", allHisto1Dict_EC, prepared1DHistogram_EC);
-    prepare2DHistogram(dCutHigh_EC_etaBin2_0, "EC_highpt_etaBin2_0", allHisto2Dict_EC, prepared2DHistogram_EC);
+    // prepare2DHistogram(dCutHigh_EC_etaBin2_0, "EC_highpt_etaBin2_0", allHisto2Dict_EC, prepared2DHistogram_EC);
 
     prepare1DHistogram(dCutHigh_EC_etaBin3_0, "EC_highpt_etaBin3_0", allHisto1Dict_EC, prepared1DHistogram_EC);
-    prepare2DHistogram(dCutHigh_EC_etaBin3_0, "EC_highpt_etaBin3_0", allHisto2Dict_EC, prepared2DHistogram_EC);
+    // prepare2DHistogram(dCutHigh_EC_etaBin3_0, "EC_highpt_etaBin3_0", allHisto2Dict_EC, prepared2DHistogram_EC);
     
     /// pt bins
     prepare1DHistogram(dCutHigh_EC_ptBin1_1, "EC_highpt_ptBin1_1", allHisto1Dict_EC, prepared1DHistogram_EC);
-    prepare2DHistogram(dCutHigh_EC_ptBin1_1, "EC_highpt_ptBin1_1", allHisto2Dict_EC, prepared2DHistogram_EC);
+    // prepare2DHistogram(dCutHigh_EC_ptBin1_1, "EC_highpt_ptBin1_1", allHisto2Dict_EC, prepared2DHistogram_EC);
 
     prepare1DHistogram(dCutHigh_EC_ptBin2_1, "EC_highpt_ptBin2_1", allHisto1Dict_EC, prepared1DHistogram_EC);
-    prepare2DHistogram(dCutHigh_EC_ptBin2_1, "EC_highpt_ptBin2_1", allHisto2Dict_EC, prepared2DHistogram_EC);
+    // prepare2DHistogram(dCutHigh_EC_ptBin2_1, "EC_highpt_ptBin2_1", allHisto2Dict_EC, prepared2DHistogram_EC);
 
     prepare1DHistogram(dCutHigh_EC_ptBin3_1, "EC_highpt_ptBin3_1", allHisto1Dict_EC, prepared1DHistogram_EC);
-    prepare2DHistogram(dCutHigh_EC_ptBin3_1, "EC_highpt_ptBin3_1", allHisto2Dict_EC, prepared2DHistogram_EC);
+    // prepare2DHistogram(dCutHigh_EC_ptBin3_1, "EC_highpt_ptBin3_1", allHisto2Dict_EC, prepared2DHistogram_EC);
 
     prepare1DHistogram(dCutHigh_EC_ptBin4_1, "EC_highpt_ptBin4_1", allHisto1Dict_EC, prepared1DHistogram_EC);
-    prepare2DHistogram(dCutHigh_EC_ptBin4_1, "EC_highpt_ptBin4_1", allHisto2Dict_EC, prepared2DHistogram_EC);
+    // prepare2DHistogram(dCutHigh_EC_ptBin4_1, "EC_highpt_ptBin4_1", allHisto2Dict_EC, prepared2DHistogram_EC);
 
     /// eta bins
     prepare1DHistogram(dCutHigh_EC_etaBin1_1, "EC_highpt_etaBin1_1", allHisto1Dict_EC, prepared1DHistogram_EC);
-    prepare2DHistogram(dCutHigh_EC_etaBin1_1, "EC_highpt_etaBin1_1", allHisto2Dict_EC, prepared2DHistogram_EC);
+    // prepare2DHistogram(dCutHigh_EC_etaBin1_1, "EC_highpt_etaBin1_1", allHisto2Dict_EC, prepared2DHistogram_EC);
 
     prepare1DHistogram(dCutHigh_EC_etaBin2_1, "EC_highpt_etaBin2_1", allHisto1Dict_EC, prepared1DHistogram_EC);
-    prepare2DHistogram(dCutHigh_EC_etaBin2_1, "EC_highpt_etaBin2_1", allHisto2Dict_EC, prepared2DHistogram_EC);
+    // prepare2DHistogram(dCutHigh_EC_etaBin2_1, "EC_highpt_etaBin2_1", allHisto2Dict_EC, prepared2DHistogram_EC);
 
     prepare1DHistogram(dCutHigh_EC_etaBin3_1, "EC_highpt_etaBin3_1", allHisto1Dict_EC, prepared1DHistogram_EC);
-    prepare2DHistogram(dCutHigh_EC_etaBin3_1, "EC_highpt_etaBin3_1", allHisto2Dict_EC, prepared2DHistogram_EC);
+    // prepare2DHistogram(dCutHigh_EC_etaBin3_1, "EC_highpt_etaBin3_1", allHisto2Dict_EC, prepared2DHistogram_EC);
 
 
     /////////////////////////////////////////////////
@@ -606,16 +747,16 @@ void makeMuonHist(string inputFolder="user.asantra.data23_13p6TeV.00456409.physi
     for (map<string, TH1D*>::iterator it = prepared1DHistogram.begin(); it != prepared1DHistogram.end(); ++it){
         it->second->Write(it->first.c_str());
     }
-    for (map<string, TH2D*>::iterator it = prepared2DHistogram.begin(); it != prepared2DHistogram.end(); ++it){
-        it->second->Write(it->first.c_str());
-    }
+    // for (map<string, TH2D*>::iterator it = prepared2DHistogram.begin(); it != prepared2DHistogram.end(); ++it){
+    //     it->second->Write(it->first.c_str());
+    // }
     /// write the histograms to the root file, endcap
     for (map<string, TH1D*>::iterator it = prepared1DHistogram_EC.begin(); it != prepared1DHistogram_EC.end(); ++it){
         it->second->Write(it->first.c_str());
     }
-    for (map<string, TH2D*>::iterator it = prepared2DHistogram_EC.begin(); it != prepared2DHistogram_EC.end(); ++it){
-        it->second->Write(it->first.c_str());
-    }
+    // for (map<string, TH2D*>::iterator it = prepared2DHistogram_EC.begin(); it != prepared2DHistogram_EC.end(); ++it){
+    //     it->second->Write(it->first.c_str());
+    // }
     myFile->Close();
     
     // Record end time
