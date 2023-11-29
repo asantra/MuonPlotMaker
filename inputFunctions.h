@@ -120,9 +120,9 @@ std::size_t number_of_files_in_directory(std::filesystem::path path)
 /// separate pt bin
 int getPtBin(float pt){
     int binNum = -999;
-    if(pt <= 60)binNum = 1;
-    else if(pt > 60 && pt <= 100)binNum = 2;
-    else if(pt > 100 && pt <= 150)binNum = 3;
+    if(abs(pt) <= 60)binNum = 1;
+    else if(abs(pt) > 60 && abs(pt) <= 100)binNum = 2;
+    else if(abs(pt) > 100 && abs(pt) <= 150)binNum = 3;
     else binNum = 4;
     return binNum;
 }
