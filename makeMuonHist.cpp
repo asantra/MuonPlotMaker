@@ -149,6 +149,7 @@ void makeMuonHist(string inputFolder="user.asantra.data23_13p6TeV.00456409.physi
     /// the key should be a variable which is already added to the DF
     /// the value is the TH1D that we want to create
     allHisto1Dict.insert(make_pair("mll", ROOT::RDF::TH1DModel("dimuon_mass_reco", "dimuon_mass_reco; m_{#mu#mu} [GeV]; Events/bin", 150, 0, 150)));
+    allHisto1Dict.insert(make_pair("nMuon", ROOT::RDF::TH1DModel("number_muon", "number of muons; N_{#mu}; Events/bin", 5, 1, 6)));
     allHisto1Dict.insert(make_pair("muon_nprecisionLayers_0", ROOT::RDF::TH1DModel("nprecisionLayers_0", "nprecisionLayers; Number of precision layers (lead); Events/bin", 8, 0, 8)));
     allHisto1Dict.insert(make_pair("muon_nprecisionLayers_1", ROOT::RDF::TH1DModel("nprecisionLayers_1", "nprecisionLayers; Number of precision layers (sub-lead); Events/bin", 8, 0, 8)));
     allHisto1Dict.insert(make_pair("muon_qOverPsignif_0", ROOT::RDF::TH1DModel("muon_qOverPsignif_0", "qOverPsignif; q/p significance (lead); Events/bin", 50, 0, 10)));
@@ -225,7 +226,7 @@ void makeMuonHist(string inputFolder="user.asantra.data23_13p6TeV.00456409.physi
     std::cout << "Looping over " << rangeNumber << " Events" << std::endl;
 
     /// filter out all events with low number of muons or low pt
-    auto dCut = d.Filter("!(muon_pt.size() < 2)")
+    auto dCut = d.Filter("(muon_pt.size() < 2)")
                  /// add HLT24 trigger cut
                  .Filter("!(muon_pt[0] < 25.)")
                  .Filter("!(muon_pt[1] < 25.)")
@@ -238,6 +239,7 @@ void makeMuonHist(string inputFolder="user.asantra.data23_13p6TeV.00456409.physi
 
                  /// add new columns to dataframe
                  .Define("mll", "getInvariantMass(muon_pt, muon_eta, muon_phi, muon_e)")
+                 .Define("nMuon", "muon_pt.size()")
                  .Define("muon_nprecisionLayers_0", "muon_nprecisionLayers[0]")
                  .Define("muon_nprecisionLayers_1", "muon_nprecisionLayers[1]")
                  .Define("muon_qOverPsignif_0", "muon_qOverPsignif[0]")
