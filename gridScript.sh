@@ -1,6 +1,6 @@
 #! /bin/bash
 #PBS -m n
-#PBS -l walltime=2:00:00
+#PBS -l walltime=10:00:00
 
 #### script that run the makeMuonHist (prepare histogram from ntuple)
 echo "Installing Root>>>>>>"
