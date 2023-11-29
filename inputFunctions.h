@@ -76,7 +76,8 @@ double getInvariantMass(ROOT::VecOps::RVec<float> muon_pt, ROOT::VecOps::RVec<fl
 
 int getMuonSize(ROOT::VecOps::RVec<float> muon_pt)
 {
-    int nMuon = muon_pt.size(); 
+    int nMuon = muon_pt.size();
+    std::cout << "number of muons: " << nMuon << std::endl;
     return nMuon;
 }
 
