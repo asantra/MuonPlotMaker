@@ -89,4 +89,4 @@ do
     else
         echo "No problem in this set: ${DESTINATION}/run_$runid"
     fi
-done
+done < "$INFILE"

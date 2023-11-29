@@ -422,9 +422,9 @@ def DrawHistsRatio(FirstTH1, LegendName, PlotColor, xrange1down, xrange1up, yran
 def main():
     gROOT.SetBatch()
     parser = argparse.ArgumentParser(description='Code to plot muon distributions')
-    parser.add_argument('-i1', default="muonAnalysis_data22_DF.root", type=str) ### use the Data histogram here
+    parser.add_argument('-i1', default="muonAnalysis_data23_00456409.root", type=str) ### use the Data histogram here
     parser.add_argument('-comp', action='store_true') ### turn this on when one wants to compare Data vs MC
-    parser.add_argument('-i2', default="user.aantra.zmumu.ANALYSIS_Histogram_All.root", type=str) ### use the MC histogram here
+    parser.add_argument('-i2', default="user.asantra.zmumu.ANALYSIS_Histogram_All.root", type=str) ### use the MC histogram here
     args = parser.parse_args()
 
     inName1 = args.i1
@@ -586,6 +586,62 @@ def main():
 
           DrawHistsRatio(FirstTH1, LegendName, PlotColor, xAxisLow, xAxisHigh, yAxisLow, yAxisHigh, xAxisTitle, outDir+"/"+FirstTH1[0].GetName()+"_HighPtDataMC", h2, 1.0, 1.0, drawline, logy, latexName, latexName2, TeVTag, doSumw2, doAtlas, doLumi, noRatio, do80, do59)
       
+          ### plotting in pt bins
+          if 'qOverPsignif' in names:
+              LegendName  = ["Data", "MC"]
+              ptBins      = ['1', '2', '3', '4']
+              etaBins     = ['1', '2', '3']
+              muonOrder   = {'0':"leading", '1':"sub-leading"}
+              
+              for key in muonOrder:
+                  for ptbinValue in ptBins:
+                    firstTH1  = inFile1.Get(names+suf+"_highpt_ptBin"+ptbinValue+"_"+key)
+                    secondTH1 = inFile2.Get(names+suf+"_highpt_ptBin"+ptbinValue+"_"+key)
+
+                    ### get normalized result
+                    firstTH1    = normalizeHist(firstTH1)
+                    secondTH1   = normalizeHist(secondTH1)
+
+                    latexName   = muonOrder[key]+" high p_{T} muon"
+                    logy        = True
+                    latexName2  = sector+", pt bin "+ptbinValue
+                    FirstTH1    = [firstTH1, secondTH1]
+                    xAxisLow    = FirstTH1[0].GetXaxis().GetBinCenter(1)
+                    xAxisHigh   = FirstTH1[0].GetXaxis().GetBinCenter(FirstTH1[0].GetNbinsX())
+                    
+                    yAxisHigh   = 4.0 #FirstTH1[0].GetMaximum()*4e1
+                    yAxisLow    = 3e-4
+
+                    h2 = FirstTH1[0].Clone("h2")
+                    h2.Reset()
+                    h2.GetYaxis().SetTitle("#frac{Data}{MC}")
+
+                    DrawHistsRatio(FirstTH1, LegendName, PlotColor, xAxisLow, xAxisHigh, yAxisLow, yAxisHigh, xAxisTitle, outDir+"/"+FirstTH1[0].GetName()+"_HighPtDataMC_ptBin"+ptbinValue+"_"+key, h2, 1.0, 1.0, drawline, logy, latexName, latexName2, TeVTag, doSumw2, doAtlas, doLumi, noRatio, do80, do59)
+            
+                  for etabinValue in etaBins:
+                    firstTH1  = inFile1.Get(names+suf+"_highpt_etaBin"+etabinValue+"_"+key)
+                    secondTH1 = inFile2.Get(names+suf+"_highpt_etaBin"+etabinValue+"_"+key)
+
+                    ### get normalized result
+                    firstTH1    = normalizeHist(firstTH1)
+                    secondTH1   = normalizeHist(secondTH1)
+
+                    latexName   = muonOrder[key]+" high p_{T} muon"
+                    logy        = True
+                    latexName2  = sector+", eta bin "+etabinValue
+                    FirstTH1    = [firstTH1, secondTH1]
+                    xAxisLow    = FirstTH1[0].GetXaxis().GetBinCenter(1)
+                    xAxisHigh   = FirstTH1[0].GetXaxis().GetBinCenter(FirstTH1[0].GetNbinsX())
+                    
+                    yAxisHigh   = 4.0 #FirstTH1[0].GetMaximum()*4e1
+                    yAxisLow    = 3e-4
+
+                    h2 = FirstTH1[0].Clone("h2")
+                    h2.Reset()
+                    h2.GetYaxis().SetTitle("#frac{Data}{MC}")
+
+                    DrawHistsRatio(FirstTH1, LegendName, PlotColor, xAxisLow, xAxisHigh, yAxisLow, yAxisHigh, xAxisTitle, outDir+"/"+FirstTH1[0].GetName()+"_HighPtDataMC_etaBin"+etabinValue+"_"+key, h2, 1.0, 1.0, drawline, logy, latexName, latexName2, TeVTag, doSumw2, doAtlas, doLumi, noRatio, do80, do59)
+        
 if __name__=="__main__":
    start = time.time()
    main()

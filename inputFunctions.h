@@ -130,8 +130,8 @@ int getPtBin(float pt){
 /// separate eta bin
 int getEtaBin(float eta){
     int binNum = -999;
-    if(eta <= 0.2)binNum=1;
-    else if(eta > 0.2 && eta <= 0.5)binNum=2;
+    if(abs(eta) <= 0.2)binNum=1;
+    else if(abs(eta) > 0.2 && abs(eta) <= 0.5)binNum=2;
     else binNum=3;
     return binNum;
 }
@@ -139,8 +139,8 @@ int getEtaBin(float eta){
 /// separate eta bin in endcap
 int getEtaBin_EC(float eta){
     int binNum = -999;
-    if(eta <= 1.6)binNum=1;
-    else if(eta > 1.6 && eta <= 2.0)binNum=2;
+    if(abs(eta) <= 1.6)binNum=1;
+    else if(abs(eta) > 1.6 && abs(eta) <= 2.0)binNum=2;
     else binNum=3;
     return binNum;
 }
