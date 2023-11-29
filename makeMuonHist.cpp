@@ -149,13 +149,13 @@ void makeMuonHist(string inputFolder="user.asantra.data23_13p6TeV.00456409.physi
     /// the key should be a variable which is already added to the DF
     /// the value is the TH1D that we want to create
     allHisto1Dict.insert(make_pair("mll", ROOT::RDF::TH1DModel("dimuon_mass_reco", "dimuon_mass_reco; m_{#mu#mu} [GeV]; Events/bin", 150, 0, 150)));
-    allHisto1Dict.insert(make_pair("nMuon", ROOT::RDF::TH1DModel("number_muon", "number of muons; N_{#mu}; Events/bin", 5, 1, 6)));
+    // allHisto1Dict.insert(make_pair("nMuon", ROOT::RDF::TH1DModel("number_muon", "number of muons; N_{#mu}; Events/bin", 5, 1, 6)));
     allHisto1Dict.insert(make_pair("muon_nprecisionLayers_0", ROOT::RDF::TH1DModel("nprecisionLayers_0", "nprecisionLayers; Number of precision layers (lead); Events/bin", 8, 0, 8)));
     allHisto1Dict.insert(make_pair("muon_nprecisionLayers_1", ROOT::RDF::TH1DModel("nprecisionLayers_1", "nprecisionLayers; Number of precision layers (sub-lead); Events/bin", 8, 0, 8)));
-    allHisto1Dict.insert(make_pair("muon_meqOverPsigma_0", ROOT::RDF::TH1DModel("muon_meqOverPsigma_0", "meqOverPsigma0; #sigma_{me} (lead); Events/bin", 1000, 0, 50)));
-    allHisto1Dict.insert(make_pair("muon_meqOverPsigma_1", ROOT::RDF::TH1DModel("muon_meqOverPsigma_1", "meqOverPsigma1; #sigma_{me} (sub-lead); Events/bin", 1000, 0, 50)));
-    allHisto1Dict.insert(make_pair("muon_idqOverPsigma_0", ROOT::RDF::TH1DModel("muon_idqOverPsigma_0", "idqOverPsigma0; #sigma_{id} (lead); Events/bin", 1000, 0, 50)));
-    allHisto1Dict.insert(make_pair("muon_idqOverPsigma_1", ROOT::RDF::TH1DModel("muon_idqOverPsigma_1", "idqOverPsigma1; #sigma_{id} (sub-lead); Events/bin", 1000, 0, 50)));
+    // allHisto1Dict.insert(make_pair("muon_meqOverPsigma_0", ROOT::RDF::TH1DModel("muon_meqOverPsigma_0", "meqOverPsigma0; #sigma_{me} (lead); Events/bin", 1000, 0, 50)));
+    // allHisto1Dict.insert(make_pair("muon_meqOverPsigma_1", ROOT::RDF::TH1DModel("muon_meqOverPsigma_1", "meqOverPsigma1; #sigma_{me} (sub-lead); Events/bin", 1000, 0, 50)));
+    // allHisto1Dict.insert(make_pair("muon_idqOverPsigma_0", ROOT::RDF::TH1DModel("muon_idqOverPsigma_0", "idqOverPsigma0; #sigma_{id} (lead); Events/bin", 1000, 0, 50)));
+    // allHisto1Dict.insert(make_pair("muon_idqOverPsigma_1", ROOT::RDF::TH1DModel("muon_idqOverPsigma_1", "idqOverPsigma1; #sigma_{id} (sub-lead); Events/bin", 1000, 0, 50)));
     allHisto1Dict.insert(make_pair("muon_qOverPsignif_0", ROOT::RDF::TH1DModel("muon_qOverPsignif_0", "qOverPsignif; q/p significance (lead); Events/bin", 50, 0, 10)));
     allHisto1Dict.insert(make_pair("muon_qOverPsignif_1", ROOT::RDF::TH1DModel("muon_qOverPsignif_1", "qOverPsignif; q/p significance (sub-lead); Events/bin", 50, 0, 10)));
     allHisto1Dict.insert(make_pair("muon_pt_0", ROOT::RDF::TH1DModel("muon_pt_0", "muon_pt; p_{T} (lead) [GeV]; Events/bin", 50, 0, 500)));
@@ -168,12 +168,13 @@ void makeMuonHist(string inputFolder="user.asantra.data23_13p6TeV.00456409.physi
     /// end cap variables
     map<string, ROOT::RDF::TH1DModel> allHisto1Dict_EC;
     allHisto1Dict_EC.insert(make_pair("mll", ROOT::RDF::TH1DModel("dimuon_mass_reco_EC", "dimuon_mass_reco; m_{#mu#mu} [GeV]; Events/bin", 150, 0, 150)));
+    // allHisto1Dict.insert(make_pair("nMuon", ROOT::RDF::TH1DModel("number_muon_EC", "number of muons; N_{#mu}; Events/bin", 5, 1, 6)));
     allHisto1Dict_EC.insert(make_pair("muon_nprecisionLayers_0", ROOT::RDF::TH1DModel("nprecisionLayers_0_EC", "nprecisionLayers; Number of precision layers (lead); Events/bin", 8, 0, 8)));
     allHisto1Dict_EC.insert(make_pair("muon_nprecisionLayers_1", ROOT::RDF::TH1DModel("nprecisionLayers_1_EC", "nprecisionLayers; Number of precision layers (sub-lead); Events/bin", 8, 0, 8)));
-    allHisto1Dict_EC.insert(make_pair("muon_meqOverPsigma_0", ROOT::RDF::TH1DModel("muon_meqOverPsigma_0", "meqOverPsigma0; #sigma_{me} (lead); Events/bin", 1000, 0, 50)));
-    allHisto1Dict_EC.insert(make_pair("muon_meqOverPsigma_1", ROOT::RDF::TH1DModel("muon_meqOverPsigma_1", "meqOverPsigma1; #sigma_{me} (sub-lead); Events/bin", 1000, 0, 50)));
-    allHisto1Dict_EC.insert(make_pair("muon_idqOverPsigma_0", ROOT::RDF::TH1DModel("muon_idqOverPsigma_0", "idqOverPsigma0; #sigma_{id} (lead); Events/bin", 1000, 0, 50)));
-    allHisto1Dict_EC.insert(make_pair("muon_idqOverPsigma_1", ROOT::RDF::TH1DModel("muon_idqOverPsigma_1", "idqOverPsigma1; #sigma_{id} (sub-lead); Events/bin", 1000, 0, 50)));
+    // allHisto1Dict_EC.insert(make_pair("muon_meqOverPsigma_0", ROOT::RDF::TH1DModel("muon_meqOverPsigma_0_EC", "meqOverPsigma0; #sigma_{me} (lead); Events/bin", 1000, 0, 50)));
+    // allHisto1Dict_EC.insert(make_pair("muon_meqOverPsigma_1", ROOT::RDF::TH1DModel("muon_meqOverPsigma_1_EC", "meqOverPsigma1; #sigma_{me} (sub-lead); Events/bin", 1000, 0, 50)));
+    // allHisto1Dict_EC.insert(make_pair("muon_idqOverPsigma_0", ROOT::RDF::TH1DModel("muon_idqOverPsigma_0_EC", "idqOverPsigma0; #sigma_{id} (lead); Events/bin", 1000, 0, 50)));
+    // allHisto1Dict_EC.insert(make_pair("muon_idqOverPsigma_1", ROOT::RDF::TH1DModel("muon_idqOverPsigma_1_EC", "idqOverPsigma1; #sigma_{id} (sub-lead); Events/bin", 1000, 0, 50)));
     allHisto1Dict_EC.insert(make_pair("muon_qOverPsignif_0", ROOT::RDF::TH1DModel("muon_qOverPsignif_0_EC", "qOverPsignif; q/p significance (lead); Events/bin", 50, 0, 10)));
     allHisto1Dict_EC.insert(make_pair("muon_qOverPsignif_1", ROOT::RDF::TH1DModel("muon_qOverPsignif_1_EC", "qOverPsignif; q/p significance (sub-lead); Events/bin", 50, 0, 10)));
     allHisto1Dict_EC.insert(make_pair("muon_pt_0", ROOT::RDF::TH1DModel("muon_pt_0_EC", "muon_pt; p_{T} (lead) [GeV]; Events/bin", 50, 0, 500)));
@@ -248,10 +249,10 @@ void makeMuonHist(string inputFolder="user.asantra.data23_13p6TeV.00456409.physi
                  /// add new columns to dataframe
                  .Define("mll", "getInvariantMass(muon_pt, muon_eta, muon_phi, muon_e)")
                 //  .Define("nMuon", "getMuonSize(muon_pt)")
-                 .Define("muon_meqOverPsigma_0", "muon_meqOverPsigma[0]")
-                 .Define("muon_meqOverPsigma_1", "muon_meqOverPsigma[1]")
-                 .Define("muon_idqOverPsigma_0", "muon_idqOverPsigma[0]")
-                 .Define("muon_idqOverPsigma_1", "muon_idqOverPsigma[1]")
+                //  .Define("muon_meqOverPsigma_0", "muon_meqOverPsigma[0]")
+                //  .Define("muon_meqOverPsigma_1", "muon_meqOverPsigma[1]")
+                //  .Define("muon_idqOverPsigma_0", "muon_idqOverPsigma[0]")
+                //  .Define("muon_idqOverPsigma_1", "muon_idqOverPsigma[1]")
                  .Define("muon_nprecisionLayers_0", "muon_nprecisionLayers[0]")
                  .Define("muon_nprecisionLayers_1", "muon_nprecisionLayers[1]")
                  .Define("muon_qOverPsignif_0", "muon_qOverPsignif[0]")
