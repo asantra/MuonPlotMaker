@@ -74,6 +74,12 @@ double getInvariantMass(ROOT::VecOps::RVec<float> muon_pt, ROOT::VecOps::RVec<fl
     return (tlv1 + tlv2).M();
 }
 
+int getMuonSize(ROOT::VecOps::RVec<float> muon_pt)
+{
+    int nMuon = muon_pt.size(); 
+    return nMuon;
+}
+
 
 /// prepare many 2D maps with one key
 class manyMaps{

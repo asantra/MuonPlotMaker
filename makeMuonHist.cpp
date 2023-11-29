@@ -247,7 +247,7 @@ void makeMuonHist(string inputFolder="user.asantra.data23_13p6TeV.00456409.physi
 
                  /// add new columns to dataframe
                  .Define("mll", "getInvariantMass(muon_pt, muon_eta, muon_phi, muon_e)")
-                 .Define("nMuon", "muon_pt.size()")
+                 .Define("nMuon", "getMuonSize(muon_pt)")
                  .Define("muon_meqOverPsigma_0", "muon_meqOverPsigma[0]")
                  .Define("muon_meqOverPsigma_1", "muon_meqOverPsigma[1]")
                  .Define("muon_idqOverPsigma_0", "muon_idqOverPsigma[0]")
