@@ -45,7 +45,7 @@ do
     mkdir -p ${DESTINATION}"/run_"$runid
     mkdir -p ${OUTDIRLOC}
 
-    ### prepare the outfile
+    ### prepare the output file
     suffix=".root"
     ### get only the last part of total path
     withoutRoot=`echo $LINE | rev | cut -d/ -f1 | rev`
