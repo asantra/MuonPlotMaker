@@ -426,7 +426,7 @@ void makeMuonHist(string inputFolder="user.asantra.data23_13p6TeV.00456409.physi
     /// define different df based on working point
 
     auto dCutHigh_EC = dCut.Filter("!(std::abs(muon_eta.at(0)) < 1.3) && !(std::abs(muon_eta.at(1)) < 1.3)")
-                             .Filter("muon_High[0] && muon_High[1]")
+                             .Filter("muon_HighPt[0] && muon_HighPt[1]")
                              .Filter("80 < mll && mll < 100");
 
     prepare1DHistogram(dCutHigh_EC, "EC_medium", allHisto1Dict_EC, prepared1DHistogram_EC);
@@ -466,6 +466,9 @@ void makeMuonHist(string inputFolder="user.asantra.data23_13p6TeV.00456409.physi
     //                       .Filter("muon_Tight[0] && muon_Tight[1]")
     //                       .Filter("80 < mll && mll < 100");
     
+
+
+
 
     /////////////////////////////////////////////////
     // Save histograms                            ///
