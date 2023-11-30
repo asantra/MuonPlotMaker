@@ -9,7 +9,7 @@ The plotting script is `muonPlots.py`
 3. One can use filtering (adding new cuts) using `.Filter`.
 4. Once the histograms are prepared (from both data and MC), the plotting can be done using `muonPlots.py`.
 
-### A. Making histograms from Data:
+### A. Making histograms from Data (running interactively):
 a. Setup Root:
 ```
 echo "Installing Root>>>>>>"
@@ -28,8 +28,29 @@ makeMuonHist()
 c. This will prepare histogram file (one file) from all the input data root files. 
 
 
+### B. Making histograms from Data (running on WIS Cluster):
 
-### B. Making histograms from MC:
+a. Change the `DESTINATION` and `OUTDIRLOC` in `sendJobsData.sh` and `resendJobsData.sh` to your own areas.
+
+b. Run `sendJobsData.sh` using: 
+```
+source sendJobsData.sh
+```
+
+c. This will submit jobs to WIS cluster per input line from `inputFileNamesData.txt`.
+
+d. Once all the jobs are completed, check if there is any problem: run 
+```
+source resendJobsData.sh
+```
+
+e. This script will examine the cluster log and will resubmit only those jobs which had any problem. 
+
+f. Once satisifed with the output, one has to 'hadd' all the histogram files to get a final histogram file.
+
+
+
+### C. Making histograms from MC:
 a. Change the `DESTINATION` and `OUTDIRLOC` in `sendJobs.sh` and `resendJobs.sh` to your own areas.
 
 b. Run `sendJobs.sh` using: 
@@ -49,7 +70,7 @@ e. This script will examine the cluster log and will resubmit only those jobs wh
 f. Once satisifed with the output, one has to 'hadd' all the histogram files to get a final histogram file.
 
 
-### C. Plotting and comparing histograms from Data and MC:
+### D. Plotting and comparing histograms from Data and MC:
 a. Use `muonPlots.py`: change the `inDir` to your location where histogram files live.
 
 b. When no comparison plots are needed: run 

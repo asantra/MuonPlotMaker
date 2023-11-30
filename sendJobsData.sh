@@ -8,15 +8,15 @@ runid=0
 
 # Define the input file
 ### give the list of root files (along with the absolute path on WIS cluster) on which you want to run the histogram maker
-INFILE=${2:-"inputFileNames.txt"}
+INFILE=${2:-"inputFileNamesData.txt"}
 ## Data/MC
-sample=${3:-"MC"}
+sample=${3:-"Data"}
 
 
 ### first prepare the .so file from makeMuonHist.cpp
-# root -l -b << EOF
-# .L makeMuonHist.cpp++
-# EOF
+root -l -b << EOF
+.L makeMuonHist.cpp++
+EOF
 
 # Read the input text file line by line
 while read -r LINE
@@ -29,7 +29,7 @@ do
     echo "runid: "$runid
     ### the place where the output and error file of the grid will live
     ### change to the submitter's work area
-    DESTINATION="/storage/agrp/arkas/MCPGridOutput"
+    DESTINATION="/storage/agrp/arkas/MCPDataGridOutput"
     ### create the main directory if it does not exists
     mkdir -p ${DESTINATION}
     
@@ -40,7 +40,7 @@ do
     fi
 
     #### the location where the histograms will live, change to your area
-    OUTDIRLOC="/storage/agrp/arkas/MCPWorkArea"
+    OUTDIRLOC="/storage/agrp/arkas/MCPDataWorkArea"
     #### create the run directory
     mkdir -p ${DESTINATION}"/run_"$runid
     mkdir -p ${OUTDIRLOC}

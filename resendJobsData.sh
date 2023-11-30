@@ -6,8 +6,8 @@ fileExtns=${1:-"ER"}
 runid=0
 
 # Define the input file from a text file
-INFILE=${2:-"inputFileNames.txt"}
-sample=${3:-"MC"}
+INFILE=${2:-"inputFileNamesData.txt"}
+sample=${3:-"Data"}
 
 while read -r LINE
 do
@@ -19,17 +19,18 @@ do
     echo "runid: "$runid
     ### the place where the output and error file of the grid will live
     ### this should be the same as sendJobs.sh
-    DESTINATION="/storage/agrp/arkas/MCPGridOutput"
+    DESTINATION="/storage/agrp/arkas/MCPDataGridOutput"
 
     ### this should be the same as sendJobs.sh
-    OUTDIRLOC="/storage/agrp/arkas/MCPWorkArea"
-
+    OUTDIRLOC="/storage/agrp/arkas/MCPDataWorkArea"
+    
     ### prepare the outfile
     suffix=".root"
     ### get only the last part of total path
     withoutRoot=`echo $LINE | rev | cut -d/ -f1 | rev`
     ### cutting out the suffix part from the input line
     withoutRoot=${withoutRoot%"$suffix"}
+
 
     ### name of the outputfile without root
     echo "outFile base: ${withoutRoot}"
