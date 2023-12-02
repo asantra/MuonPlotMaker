@@ -7,7 +7,7 @@ echo "Installing Root>>>>>>"
 export ATLAS_LOCAL_ROOT_BASE=/cvmfs/atlas.cern.ch/repo/ATLASLocalRootBase
 source ${ATLAS_LOCAL_ROOT_BASE}/user/atlasLocalSetup.sh
 ### for latest root
-lsetup "views LCG_104b_ATLAS_2 x86_64-centos7-gcc11-opt"
+lsetup "views LCG_104c_ATLAS_2 x86_64-centos7-gcc11-opt"
 
 directory=${parname1}
 inFile=${parname2}
