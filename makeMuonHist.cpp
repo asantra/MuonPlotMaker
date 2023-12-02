@@ -168,7 +168,7 @@ void makeMuonHist(string inputFolder="user.asantra.data23_13p6TeV.00456409.physi
     /// end cap variables
     map<string, ROOT::RDF::TH1DModel> allHisto1Dict_EC;
     allHisto1Dict_EC.insert(make_pair("mll", ROOT::RDF::TH1DModel("dimuon_mass_reco_EC", "dimuon_mass_reco; m_{#mu#mu} [GeV]; Events/bin", 150, 0, 150)));
-    allHisto1Dict.insert(make_pair("nMuon", ROOT::RDF::TH1DModel("number_muon_EC", "number of muons; N_{#mu}; Events/bin", 5, 1, 6)));
+    allHisto1Dict_EC.insert(make_pair("nMuon", ROOT::RDF::TH1DModel("number_muon_EC", "number of muons; N_{#mu}; Events/bin", 5, 1, 6)));
     allHisto1Dict_EC.insert(make_pair("muon_nprecisionLayers_0", ROOT::RDF::TH1DModel("nprecisionLayers_0_EC", "nprecisionLayers; Number of precision layers (lead); Events/bin", 8, 0, 8)));
     allHisto1Dict_EC.insert(make_pair("muon_nprecisionLayers_1", ROOT::RDF::TH1DModel("nprecisionLayers_1_EC", "nprecisionLayers; Number of precision layers (sub-lead); Events/bin", 8, 0, 8)));
     allHisto1Dict_EC.insert(make_pair("muon_meqOverPsigma_0", ROOT::RDF::TH1DModel("muon_meqOverPsigma_0_EC", "meqOverPsigma0; #sigma_{me} (lead); Events/bin", 1000, 0, 50)));
