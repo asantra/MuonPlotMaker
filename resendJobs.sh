@@ -48,6 +48,9 @@ do
         elif grep -rnwq ${DESTINATION}/run_$runid/*${fileExtns} -e "Killed"
         then
             flag=1
+        elif grep -rnwq ${DESTINATION}/run_$runid/*${fileExtns} -e "killed"
+        then
+            flag=1
         elif grep -rnwq ${DESTINATION}/run_$runid/*${fileExtns} -e "Aborting"
         then
             flag=1

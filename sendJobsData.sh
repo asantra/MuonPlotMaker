@@ -14,9 +14,9 @@ sample=${3:-"Data"}
 
 
 ### first prepare the .so file from makeMuonHist.cpp
-root -l -b << EOF
-.L makeMuonHist.cpp++
-EOF
+# root -l -b << EOF
+# .L makeMuonHist.cpp++
+# EOF
 
 # Read the input text file line by line
 while read -r LINE
