@@ -402,16 +402,20 @@ void makeMuonHist(string inputFolder="user.asantra.data23_13p6TeV.00456409.physi
     /// break the events into separate pt and eta bins
     for (int leading=0; leading < 2; leading++){
         for(int k=0; k < 10; k++){
-            cout << "muon order " << leading << " bins " << k << endl;
-            cout << "The highpt pt filtering string " << "ptBin_"+to_string(leading)+"=="+to_string(k+1) << endl;
-            cout << "pt histogram suffix " << histPtSuffixHigh.at(k)+"_"+to_string(leading) << endl;
+            if(debug){
+                cout << "muon order " << leading << " bins " << k << endl;
+                cout << "The highpt pt filtering string " << "ptBin_"+to_string(leading)+"=="+to_string(k+1) << endl;
+                cout << "pt histogram suffix " << histPtSuffixHigh.at(k)+"_"+to_string(leading) << endl;
+            }
 
             auto dCutHigh_ptBin   = dCutHigh.Filter("ptBin_"+to_string(leading)+"=="+to_string(k+1));
             prepare1DHistogram(dCutHigh_ptBin, histPtSuffixHigh.at(k)+"_"+to_string(leading), allHisto1Dict, prepared1DHistogram);
             prepare2DHistogram(dCutHigh_ptBin, histPtSuffixHigh.at(k)+"_"+to_string(leading), allHisto2Dict, prepared2DHistogram);
 
-            cout << "The highpt eta filtering string " << "etaBin_"+to_string(leading)+"=="+to_string(k+1) << endl;
-            cout << "eta histogram suffix " << histEtaSuffixHigh.at(k)+"_"+to_string(leading) << endl;
+            if(debug){
+                cout << "The highpt eta filtering string " << "etaBin_"+to_string(leading)+"=="+to_string(k+1) << endl;
+                cout << "eta histogram suffix " << histEtaSuffixHigh.at(k)+"_"+to_string(leading) << endl;
+            }
 
             auto dCutHigh_etaBin   = dCutHigh.Filter("etaBin_"+to_string(leading)+"=="+to_string(k+1));
             prepare1DHistogram(dCutHigh_etaBin, histEtaSuffixHigh.at(k)+"_"+to_string(leading), allHisto1Dict, prepared1DHistogram);
@@ -441,16 +445,20 @@ void makeMuonHist(string inputFolder="user.asantra.data23_13p6TeV.00456409.physi
     /// break the events into separate pt and eta bins
     for (int leading=0; leading < 2; leading++){
         for(int k=0; k < 10; k++){
-            cout << "EC muon order " << leading << " bins " << k << endl;
-            cout << "EC The highpt pt filtering string " << "ptBin_"+to_string(leading)+"=="+to_string(k+1) << endl;
-            cout << "EC pt histogram suffix " << histPtSuffixECHigh.at(k)+"_"+to_string(leading) << endl;
+            if(debug){
+                cout << "EC muon order " << leading << " bins " << k << endl;
+                cout << "EC The highpt pt filtering string " << "ptBin_"+to_string(leading)+"=="+to_string(k+1) << endl;
+                cout << "EC pt histogram suffix " << histPtSuffixECHigh.at(k)+"_"+to_string(leading) << endl;
+            }
 
             auto dCutHigh_EC_ptBin   = dCutHigh_EC.Filter("ptBin_"+to_string(leading)+"=="+to_string(k+1));
             prepare1DHistogram(dCutHigh_EC_ptBin, histPtSuffixECHigh.at(k)+"_"+to_string(leading), allHisto1Dict_EC, prepared1DHistogram_EC);
             prepare2DHistogram(dCutHigh_EC_ptBin, histPtSuffixECHigh.at(k)+"_"+to_string(leading), allHisto2Dict_EC, prepared2DHistogram_EC);
 
-            cout << "The EC highpt eta filtering string " << "etaBin_"+to_string(leading)+"=="+to_string(k+1) << endl;
-            cout << "EC eta histogram suffix " << histEtaSuffixECHigh.at(k)+"_"+to_string(leading) << endl;
+            if(debug){
+                cout << "The EC highpt eta filtering string " << "etaBin_"+to_string(leading)+"=="+to_string(k+1) << endl;
+                cout << "EC eta histogram suffix " << histEtaSuffixECHigh.at(k)+"_"+to_string(leading) << endl;
+            }
 
             auto dCutHigh_EC_etaBin   = dCutHigh_EC.Filter("etaBin_"+to_string(leading)+"=="+to_string(k+1));
             prepare1DHistogram(dCutHigh_EC_etaBin, histEtaSuffixECHigh.at(k)+"_"+to_string(leading), allHisto1Dict_EC, prepared1DHistogram_EC);
