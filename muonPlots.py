@@ -444,7 +444,7 @@ def main():
     if(args.comp): inFile2 = TFile(inDir+"/"+inName2, "READ")
 
     ### add the histogram names that you want to plot
-    histogramNames = ["mll", "muon_nprecisionLayers_0", "muon_nprecisionLayers_1", "muon_qOverPsignif_0", "muon_qOverPsignif_1", "muon_pt_0", "muon_pt_1", "muon_pt_0", "muon_phi_0", "muon_phi_1", "muon_eta_0", "muon_eta_1", "muon_eta_vs_phi_0", "muon_eta_vs_phi_1"]
+    histogramNames = ["mll", "nMuon", "muon_nprecisionLayers_0", "muon_nprecisionLayers_1", "muon_qOverPsignif_0", "muon_qOverPsignif_1", "muon_meqOverPsigma_0", "muon_meqOverPsigma_1", "muon_idqOverPsigma_0", "muon_idqOverPsigma_1", "muon_pt_0", "muon_pt_1", "muon_pt_0", "muon_phi_0", "muon_phi_1", "muon_eta_0", "muon_eta_1", "muon_eta_vs_phi_0", "muon_eta_vs_phi_1"]
 
 
 
@@ -454,7 +454,8 @@ def main():
     leftLegend  = True
 
     ### looping over barrel and endcap region
-    for sector in ["barrel" , "endcap"]:
+    # for sector in ["barrel" , "endcap"]:
+    for sector in ["barrel"]:
       print('---> plotting ', sector)
       #### plot the barrel distributions
       for names in histogramNames:
@@ -587,7 +588,7 @@ def main():
           DrawHistsRatio(FirstTH1, LegendName, PlotColor, xAxisLow, xAxisHigh, yAxisLow, yAxisHigh, xAxisTitle, outDir+"/"+FirstTH1[0].GetName()+"_HighPtDataMC", h2, 1.0, 1.0, drawline, logy, latexName, latexName2, TeVTag, doSumw2, doAtlas, doLumi, noRatio, do80, do59)
       
           ### plotting in pt bins
-          if 'qOverPsignif' in names:
+          if 'qOverP' in names:
               LegendName  = ["Data", "MC"]
               ptBins      = ['1', '2', '3', '4']
               etaBins     = ['1', '2', '3']

@@ -149,13 +149,17 @@ void makeMuonHist(string inputFolder="user.asantra.data23_13p6TeV.00456409.physi
     /// the key should be a variable which is already added to the DF
     /// the value is the TH1D that we want to create
     allHisto1Dict.insert(make_pair("mll", ROOT::RDF::TH1DModel("dimuon_mass_reco", "dimuon_mass_reco; m_{#mu#mu} [GeV]; Events/bin", 150, 0, 150)));
-    allHisto1Dict.insert(make_pair("nMuon", ROOT::RDF::TH1DModel("number_muon", "number of muons; N_{#mu}; Events/bin", 5, 1, 6)));
+    allHisto1Dict.insert(make_pair("nMuon", ROOT::RDF::TH1DModel("number_muon", "number of muons; N_{#mu}; Events/bin", 10, 1, 11)));
     allHisto1Dict.insert(make_pair("muon_nprecisionLayers_0", ROOT::RDF::TH1DModel("nprecisionLayers_0", "nprecisionLayers; Number of precision layers (lead); Events/bin", 8, 0, 8)));
     allHisto1Dict.insert(make_pair("muon_nprecisionLayers_1", ROOT::RDF::TH1DModel("nprecisionLayers_1", "nprecisionLayers; Number of precision layers (sub-lead); Events/bin", 8, 0, 8)));
-    allHisto1Dict.insert(make_pair("muon_meqOverPsigma_0", ROOT::RDF::TH1DModel("muon_meqOverPsigma_0", "meqOverPsigma0; #sigma_{me} (lead); Events/bin", 1000, 0, 50)));
-    allHisto1Dict.insert(make_pair("muon_meqOverPsigma_1", ROOT::RDF::TH1DModel("muon_meqOverPsigma_1", "meqOverPsigma1; #sigma_{me} (sub-lead); Events/bin", 1000, 0, 50)));
-    allHisto1Dict.insert(make_pair("muon_idqOverPsigma_0", ROOT::RDF::TH1DModel("muon_idqOverPsigma_0", "idqOverPsigma0; #sigma_{id} (lead); Events/bin", 1000, 0, 50)));
-    allHisto1Dict.insert(make_pair("muon_idqOverPsigma_1", ROOT::RDF::TH1DModel("muon_idqOverPsigma_1", "idqOverPsigma1; #sigma_{id} (sub-lead); Events/bin", 1000, 0, 50)));
+    allHisto1Dict.insert(make_pair("muon_meqOverPsigma_0", ROOT::RDF::TH1DModel("muon_meqOverPsigma_0", "meqOverPsigma0; #sigma_{me} (lead); Events/bin", 1000, 0, 0.5)));
+    allHisto1Dict.insert(make_pair("muon_meqOverPsigma_1", ROOT::RDF::TH1DModel("muon_meqOverPsigma_1", "meqOverPsigma1; #sigma_{me} (sub-lead); Events/bin", 1000, 0, 0.5)));
+    allHisto1Dict.insert(make_pair("muon_meqOverP_0", ROOT::RDF::TH1DModel("muon_meqOverP_0", "meqOverP0; qOverP_{me} (lead); Events/bin", 1000, -0.002, 0.002)));
+    allHisto1Dict.insert(make_pair("muon_meqOverP_1", ROOT::RDF::TH1DModel("muon_meqOverP_1", "meqOverP1; qOverP_{me} (sub-lead); Events/bin", 1000, -0.002, 0.002)));
+    allHisto1Dict.insert(make_pair("muon_idqOverPsigma_0", ROOT::RDF::TH1DModel("muon_idqOverPsigma_0", "idqOverPsigma0; #sigma_{id} (lead); Events/bin", 1000, 0, 0.5)));
+    allHisto1Dict.insert(make_pair("muon_idqOverPsigma_1", ROOT::RDF::TH1DModel("muon_idqOverPsigma_1", "idqOverPsigma1; #sigma_{id} (sub-lead); Events/bin", 1000, 0, 0.5)));
+    allHisto1Dict.insert(make_pair("muon_idqOverP_0", ROOT::RDF::TH1DModel("muon_idqOverP_0", "idqOverP0; qOverP_{id} (lead); Events/bin", 1000, -0.002, 0.002)));
+    allHisto1Dict.insert(make_pair("muon_idqOverP_1", ROOT::RDF::TH1DModel("muon_idqOverP_1", "idqOverP1; qOverP_{id} (sub-lead); Events/bin", 1000, -0.002, 0.002)));
     allHisto1Dict.insert(make_pair("muon_qOverPsignif_0", ROOT::RDF::TH1DModel("muon_qOverPsignif_0", "qOverPsignif; q/p significance (lead); Events/bin", 50, 0, 10)));
     allHisto1Dict.insert(make_pair("muon_qOverPsignif_1", ROOT::RDF::TH1DModel("muon_qOverPsignif_1", "qOverPsignif; q/p significance (sub-lead); Events/bin", 50, 0, 10)));
     allHisto1Dict.insert(make_pair("muon_pt_0", ROOT::RDF::TH1DModel("muon_pt_0", "muon_pt; p_{T} (lead) [GeV]; Events/bin", 50, 0, 500)));
@@ -165,16 +169,23 @@ void makeMuonHist(string inputFolder="user.asantra.data23_13p6TeV.00456409.physi
     allHisto1Dict.insert(make_pair("muon_eta_0", ROOT::RDF::TH1DModel("muon_eta_0", "muon_eta; #eta (lead); Events/bin", 44, -1.1, 1.1)));
     allHisto1Dict.insert(make_pair("muon_eta_1", ROOT::RDF::TH1DModel("muon_eta_1", "muon_eta; #eta (sub-lead); Events/bin", 44, -1.1, 1.1)));
     
+
+
+    
     /// end cap variables
     map<string, ROOT::RDF::TH1DModel> allHisto1Dict_EC;
     allHisto1Dict_EC.insert(make_pair("mll", ROOT::RDF::TH1DModel("dimuon_mass_reco_EC", "dimuon_mass_reco; m_{#mu#mu} [GeV]; Events/bin", 150, 0, 150)));
-    allHisto1Dict_EC.insert(make_pair("nMuon", ROOT::RDF::TH1DModel("number_muon_EC", "number of muons; N_{#mu}; Events/bin", 5, 1, 6)));
+    allHisto1Dict_EC.insert(make_pair("nMuon", ROOT::RDF::TH1DModel("number_muon_EC", "number of muons; N_{#mu}; Events/bin", 10, 1, 11)));
     allHisto1Dict_EC.insert(make_pair("muon_nprecisionLayers_0", ROOT::RDF::TH1DModel("nprecisionLayers_0_EC", "nprecisionLayers; Number of precision layers (lead); Events/bin", 8, 0, 8)));
     allHisto1Dict_EC.insert(make_pair("muon_nprecisionLayers_1", ROOT::RDF::TH1DModel("nprecisionLayers_1_EC", "nprecisionLayers; Number of precision layers (sub-lead); Events/bin", 8, 0, 8)));
-    allHisto1Dict_EC.insert(make_pair("muon_meqOverPsigma_0", ROOT::RDF::TH1DModel("muon_meqOverPsigma_0_EC", "meqOverPsigma0; #sigma_{me} (lead); Events/bin", 1000, 0, 50)));
-    allHisto1Dict_EC.insert(make_pair("muon_meqOverPsigma_1", ROOT::RDF::TH1DModel("muon_meqOverPsigma_1_EC", "meqOverPsigma1; #sigma_{me} (sub-lead); Events/bin", 1000, 0, 50)));
-    allHisto1Dict_EC.insert(make_pair("muon_idqOverPsigma_0", ROOT::RDF::TH1DModel("muon_idqOverPsigma_0_EC", "idqOverPsigma0; #sigma_{id} (lead); Events/bin", 1000, 0, 50)));
-    allHisto1Dict_EC.insert(make_pair("muon_idqOverPsigma_1", ROOT::RDF::TH1DModel("muon_idqOverPsigma_1_EC", "idqOverPsigma1; #sigma_{id} (sub-lead); Events/bin", 1000, 0, 50)));
+    allHisto1Dict_EC.insert(make_pair("muon_meqOverP_0", ROOT::RDF::TH1DModel("muon_meqOverP_0_EC", "meqOverP0; qOverP_{me} (lead); Events/bin", 1000, -0.002, 0.002)));
+    allHisto1Dict_EC.insert(make_pair("muon_meqOverP_1", ROOT::RDF::TH1DModel("muon_meqOverP_1_EC", "meqOverP1; qOverP_{me} (sub-lead); Events/bin", 1000, -0.002, 0.002)));
+    allHisto1Dict_EC.insert(make_pair("muon_meqOverPsigma_0", ROOT::RDF::TH1DModel("muon_meqOverPsigma_0_EC", "meqOverPsigma0; #sigma_{me} (lead); Events/bin", 1000, 0, 0.5)));
+    allHisto1Dict_EC.insert(make_pair("muon_meqOverPsigma_1", ROOT::RDF::TH1DModel("muon_meqOverPsigma_1_EC", "meqOverPsigma1; #sigma_{me} (sub-lead); Events/bin", 1000, 0, 0.5)));
+    allHisto1Dict_EC.insert(make_pair("muon_idqOverP_0", ROOT::RDF::TH1DModel("muon_idqOverP_0_EC", "idqOverP0; qOverP_{id} (lead); Events/bin", 1000, -0.002, 0.002)));
+    allHisto1Dict_EC.insert(make_pair("muon_idqOverP_1", ROOT::RDF::TH1DModel("muon_idqOverP_1_EC", "idqOverP1; qOverP_{id} (sub-lead); Events/bin", 1000, -0.002, 0.002)));
+    allHisto1Dict_EC.insert(make_pair("muon_idqOverPsigma_0", ROOT::RDF::TH1DModel("muon_idqOverPsigma_0_EC", "idqOverPsigma0; #sigma_{id} (lead); Events/bin", 1000, 0, 0.5)));
+    allHisto1Dict_EC.insert(make_pair("muon_idqOverPsigma_1", ROOT::RDF::TH1DModel("muon_idqOverPsigma_1_EC", "idqOverPsigma1; #sigma_{id} (sub-lead); Events/bin", 1000, 0, 0.5)));
     allHisto1Dict_EC.insert(make_pair("muon_qOverPsignif_0", ROOT::RDF::TH1DModel("muon_qOverPsignif_0_EC", "qOverPsignif; q/p significance (lead); Events/bin", 50, 0, 10)));
     allHisto1Dict_EC.insert(make_pair("muon_qOverPsignif_1", ROOT::RDF::TH1DModel("muon_qOverPsignif_1_EC", "qOverPsignif; q/p significance (sub-lead); Events/bin", 50, 0, 10)));
     allHisto1Dict_EC.insert(make_pair("muon_pt_0", ROOT::RDF::TH1DModel("muon_pt_0_EC", "muon_pt; p_{T} (lead) [GeV]; Events/bin", 50, 0, 500)));
@@ -252,6 +263,10 @@ void makeMuonHist(string inputFolder="user.asantra.data23_13p6TeV.00456409.physi
                  .Define("muon_meqOverPsigma_1", "muon_meqOverPsigma[1]")
                  .Define("muon_idqOverPsigma_0", "muon_idqOverPsigma[0]")
                  .Define("muon_idqOverPsigma_1", "muon_idqOverPsigma[1]")
+                 .Define("muon_meqOverP_0", "muon_meqOverP[0]")
+                 .Define("muon_meqOverP_1", "muon_meqOverP[1]")
+                 .Define("muon_idqOverP_0", "muon_idqOverP[0]")
+                 .Define("muon_idqOverP_1", "muon_idqOverP[1]")
                  .Define("muon_nprecisionLayers_0", "muon_nprecisionLayers[0]")
                  .Define("muon_nprecisionLayers_1", "muon_nprecisionLayers[1]")
                  .Define("muon_qOverPsignif_0", "muon_qOverPsignif[0]")
@@ -319,16 +334,21 @@ void makeMuonHist(string inputFolder="user.asantra.data23_13p6TeV.00456409.physi
     /// break the events into separate pt and eta bins
     for (int leading=0; leading < 2; leading++){
         for(int k=0; k < 10; k++){
-            cout << "muon order " << leading << " bins " << k << endl;
-            cout << "The medium pt filtering string " << "ptBin_"+to_string(leading)+"=="+to_string(k+1) << endl;
-            cout << "pt histogram suffix " << histPtSuffixMedium.at(k)+"_"+to_string(leading) << endl;
+            if(debug){
+                cout << "muon order " << leading << " bins " << k << endl;
+                cout << "The medium pt filtering string " << "ptBin_"+to_string(leading)+"=="+to_string(k+1) << endl;
+                cout << "pt histogram suffix " << histPtSuffixMedium.at(k)+"_"+to_string(leading) << endl;
+            }
 
             auto dCutMedium_ptBin   = dCutMedium.Filter("ptBin_"+to_string(leading)+"=="+to_string(k+1));
             prepare1DHistogram(dCutMedium_ptBin, histPtSuffixMedium.at(k)+"_"+to_string(leading), allHisto1Dict, prepared1DHistogram);
             prepare2DHistogram(dCutMedium_ptBin, histPtSuffixMedium.at(k)+"_"+to_string(leading), allHisto2Dict, prepared2DHistogram);
 
-            cout << "The medium eta filtering string " << "etaBin_"+to_string(leading)+"=="+to_string(k+1) << endl;
-            cout << "eta histogram suffix " << histEtaSuffixMedium.at(k)+"_"+to_string(leading) << endl;
+            
+            if(debug){
+                cout << "The medium eta filtering string " << "etaBin_"+to_string(leading)+"=="+to_string(k+1) << endl;
+                cout << "eta histogram suffix " << histEtaSuffixMedium.at(k)+"_"+to_string(leading) << endl;
+            }
 
             auto dCutMedium_etaBin   = dCutMedium.Filter("etaBin_"+to_string(leading)+"=="+to_string(k+1));
             prepare1DHistogram(dCutMedium_etaBin, histEtaSuffixMedium.at(k)+"_"+to_string(leading), allHisto1Dict, prepared1DHistogram);
@@ -358,16 +378,20 @@ void makeMuonHist(string inputFolder="user.asantra.data23_13p6TeV.00456409.physi
     /// break the events into separate pt and eta bins
     for (int leading=0; leading < 2; leading++){
         for(int k=0; k < 10; k++){
-            cout << "EC muon order " << leading << " bins " << k << endl;
-            cout << "EC The medium pt filtering string " << "ptBin_"+to_string(leading)+"=="+to_string(k+1) << endl;
-            cout << "EC pt histogram suffix " << histPtSuffixECMedium.at(k)+"_"+to_string(leading) << endl;
+            if(debug){
+                cout << "EC muon order " << leading << " bins " << k << endl;
+                cout << "EC The medium pt filtering string " << "ptBin_"+to_string(leading)+"=="+to_string(k+1) << endl;
+                cout << "EC pt histogram suffix " << histPtSuffixECMedium.at(k)+"_"+to_string(leading) << endl;
+            }
 
             auto dCutMedium_EC_ptBin   = dCutMedium_EC.Filter("ptBin_"+to_string(leading)+"=="+to_string(k+1));
             prepare1DHistogram(dCutMedium_EC_ptBin, histPtSuffixECMedium.at(k)+"_"+to_string(leading), allHisto1Dict_EC, prepared1DHistogram_EC);
             prepare2DHistogram(dCutMedium_EC_ptBin, histPtSuffixECMedium.at(k)+"_"+to_string(leading), allHisto2Dict_EC, prepared2DHistogram_EC);
 
-            cout << "The EC medium eta filtering string " << "etaBin_"+to_string(leading)+"=="+to_string(k+1) << endl;
-            cout << "EC eta histogram suffix " << histEtaSuffixECMedium.at(k)+"_"+to_string(leading) << endl;
+            if(debug){
+                cout << "The EC medium eta filtering string " << "etaBin_"+to_string(leading)+"=="+to_string(k+1) << endl;
+                cout << "EC eta histogram suffix " << histEtaSuffixECMedium.at(k)+"_"+to_string(leading) << endl;
+            }
 
             auto dCutMedium_EC_etaBin   = dCutMedium_EC.Filter("etaBin_"+to_string(leading)+"=="+to_string(k+1));
             prepare1DHistogram(dCutMedium_EC_etaBin, histEtaSuffixECMedium.at(k)+"_"+to_string(leading), allHisto1Dict_EC, prepared1DHistogram_EC);
@@ -433,8 +457,8 @@ void makeMuonHist(string inputFolder="user.asantra.data23_13p6TeV.00456409.physi
                              .Filter("muon_HighPt[0] && muon_HighPt[1]")
                              .Filter("80 < mll && mll < 100");
 
-    prepare1DHistogram(dCutHigh_EC, "EC_medium", allHisto1Dict_EC, prepared1DHistogram_EC);
-    prepare2DHistogram(dCutHigh_EC, "EC_medium", allHisto2Dict_EC, prepared2DHistogram_EC);
+    prepare1DHistogram(dCutHigh_EC, "EC_highpt", allHisto1Dict_EC, prepared1DHistogram_EC);
+    prepare2DHistogram(dCutHigh_EC, "EC_highpt", allHisto2Dict_EC, prepared2DHistogram_EC);
 
     vector<string> histPtSuffixECHigh = {}, histEtaSuffixECHigh = {};
     for(int l=0; l < 10; l++){
