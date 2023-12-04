@@ -17,7 +17,7 @@ def normalizeHist(hist):
       if w!=0:
         hist.Scale(1./w)
       else:
-        print("can't normalize, it's empty histogram")
+        print("can't normalize, it's an empty histogram")
 
    ### normaize 2D hist
    else:
@@ -25,7 +25,7 @@ def normalizeHist(hist):
       if w!=0:
         hist.Scale(1./w)
       else:
-        print("can't normalize, it's empty histogram")
+        print("can't normalize, it's an empty histogram")
 
    return hist
 
@@ -422,7 +422,7 @@ def DrawHistsRatio(FirstTH1, LegendName, PlotColor, xrange1down, xrange1up, yran
 def main():
     gROOT.SetBatch()
     parser = argparse.ArgumentParser(description='Code to plot muon distributions')
-    parser.add_argument('-i1', default="muonAnalysis_data23_00456409.root", type=str) ### use the Data histogram here
+    parser.add_argument('-i1', default="muonAnalysis_data23.root", type=str) ### use the Data histogram here
     parser.add_argument('-comp', action='store_true') ### turn this on when one wants to compare Data vs MC
     parser.add_argument('-i2', default="user.asantra.zmumu.ANALYSIS_Histogram_All.root", type=str) ### use the MC histogram here
     args = parser.parse_args()
@@ -444,7 +444,7 @@ def main():
     if(args.comp): inFile2 = TFile(inDir+"/"+inName2, "READ")
 
     ### add the histogram names that you want to plot
-    histogramNames = ["mll", "nMuon", "muon_nprecisionLayers_0", "muon_nprecisionLayers_1", "muon_qOverPsignif_0", "muon_qOverPsignif_1", "muon_meqOverPsigma_0", "muon_meqOverPsigma_1", "muon_idqOverPsigma_0", "muon_idqOverPsigma_1", "muon_pt_0", "muon_pt_1", "muon_pt_0", "muon_phi_0", "muon_phi_1", "muon_eta_0", "muon_eta_1", "muon_eta_vs_phi_0", "muon_eta_vs_phi_1"]
+    histogramNames = ["mll", "nMuon", "muon_nprecisionLayers_0", "muon_nprecisionLayers_1", "muon_qOverPsignif_0", "muon_qOverPsignif_1", "muon_meqOverPsigma_0", "muon_meqOverPsigma_1", "muon_idqOverPsigma_0", "muon_idqOverPsigma_1", "muon_meqOverP_0", "muon_meqOverP_1", "muon_idqOverP_0", "muon_idqOverP_1","muon_pt_0", "muon_pt_1", "muon_pt_0", "muon_phi_0", "muon_phi_1", "muon_eta_0", "muon_eta_1", "muon_eta_vs_phi_0", "muon_eta_vs_phi_1"]
 
 
 
@@ -454,8 +454,8 @@ def main():
     leftLegend  = True
 
     ### looping over barrel and endcap region
-    # for sector in ["barrel" , "endcap"]:
-    for sector in ["barrel"]:
+    for sector in ["barrel" , "endcap"]:
+    # for sector in ["barrel"]:
       print('---> plotting ', sector)
       #### plot the barrel distributions
       for names in histogramNames:
@@ -493,18 +493,28 @@ def main():
           latexName3  = sector
           latexName4  = ''
           zAxisName   = 'Entries'
-          zrange1down = 4e5
+          zrange1down = 1e5
           zrange1up   = 1e7
 
           ## medium
           latexName2  = "medium"
-          DrawHists(FirstTH1, LegendName, PlotColor,xAxisName, yAxisName, xAxisLow, xAxisHigh, yAxisHigh, yAxisLow, outDir+"/"+FirstTH1[0].GetName(), 1.0, 1.0, drawline, logy, latexName, latexName2, latexName3, leftLegend, doAtlas, doLumi, noRatio, do80, do59, drawPattern, logz, logx, latexName4, zAxisName,zrange1down,zrange1up)
+
+          try:
+            DrawHists(FirstTH1, LegendName, PlotColor,xAxisName, yAxisName, xAxisLow, xAxisHigh, yAxisHigh, yAxisLow, outDir+"/"+FirstTH1[0].GetName(), 1.0, 1.0, drawline, logy, latexName, latexName2, latexName3, leftLegend, doAtlas, doLumi, noRatio, do80, do59, drawPattern, logz, logx, latexName4, zAxisName,zrange1down,zrange1up)
+          except:
+             print("Can't plot ", FirstTH1[0].GetName())
+
           ## high pt
           latexName2   = "high-p_{T}"
           ### get normalized result
           # secondTH1    = normalizeHist(secondTH1)
           SecondTH1    = [secondTH1]
-          DrawHists(SecondTH1, LegendName, PlotColor,xAxisName, yAxisName, xAxisLow, xAxisHigh, yAxisHigh, yAxisLow, outDir+"/"+SecondTH1[0].GetName(), 1.0, 1.0, drawline, logy, latexName, latexName2, latexName3, leftLegend, doAtlas, doLumi, noRatio, do80, do59, drawPattern, logz, logx, latexName4, zAxisName,zrange1down,zrange1up)
+          
+          try:
+            DrawHists(SecondTH1, LegendName, PlotColor,xAxisName, yAxisName, xAxisLow, xAxisHigh, yAxisHigh, yAxisLow, outDir+"/"+SecondTH1[0].GetName(), 1.0, 1.0, drawline, logy, latexName, latexName2, latexName3, leftLegend, doAtlas, doLumi, noRatio, do80, do59, drawPattern, logz, logx, latexName4, zAxisName,zrange1down,zrange1up)
+          except:
+             print("Can't plot ", SecondTH1[0].GetName())
+
         ### plot 1D plots
         else:
           logy        = True
@@ -514,7 +524,7 @@ def main():
           xAxisHigh   = FirstTH1[0].GetXaxis().GetBinCenter(FirstTH1[0].GetNbinsX())
           
           yAxisHigh   = FirstTH1[0].GetMaximum()*4e1
-          yAxisLow    = 1e4
+          yAxisLow    = 1e0
           xAxisTitle  = FirstTH1[0].GetXaxis().GetTitle()
           ### there is a problem in lead pt x axis title, this is a dirty fix
           if not xAxisTitle:
@@ -527,7 +537,10 @@ def main():
           h2.Reset()
           h2.GetYaxis().SetTitle("#frac{medium}{highpt}")
 
-          DrawHistsRatio(FirstTH1, LegendName, PlotColor, xAxisLow, xAxisHigh, yAxisLow, yAxisHigh, xAxisTitle, outDir+"/"+FirstTH1[0].GetName(), h2, 1.0, 1.0, drawline, logy, latexName, latexName2, TeVTag, doSumw2, doAtlas, doLumi, noRatio, do80, do59)
+          try:
+            DrawHistsRatio(FirstTH1, LegendName, PlotColor, xAxisLow, xAxisHigh, yAxisLow, yAxisHigh, xAxisTitle, outDir+"/"+FirstTH1[0].GetName(), h2, 1.0, 1.0, drawline, logy, latexName, latexName2, TeVTag, doSumw2, doAtlas, doLumi, noRatio, do80, do59)
+          except:
+             print("Can't plot ", FirstTH1[0].GetName())
 
 
 
@@ -560,7 +573,10 @@ def main():
           h2.Reset()
           h2.GetYaxis().SetTitle("#frac{Data}{MC}")
 
-          DrawHistsRatio(FirstTH1, LegendName, PlotColor, xAxisLow, xAxisHigh, yAxisLow, yAxisHigh, xAxisTitle, outDir+"/"+FirstTH1[0].GetName()+"_MediumDataMC", h2, 1.0, 1.0, drawline, logy, latexName, latexName2, TeVTag, doSumw2, doAtlas, doLumi, noRatio, do80, do59)
+          try:
+            DrawHistsRatio(FirstTH1, LegendName, PlotColor, xAxisLow, xAxisHigh, yAxisLow, yAxisHigh, xAxisTitle, outDir+"/"+FirstTH1[0].GetName()+"_MediumDataMC", h2, 1.0, 1.0, drawline, logy, latexName, latexName2, TeVTag, doSumw2, doAtlas, doLumi, noRatio, do80, do59)
+          except:
+             print("Can't plot ", FirstTH1[0].GetName())
           
           
           LegendName  = ["Data", "MC"]
@@ -578,20 +594,23 @@ def main():
           xAxisLow    = FirstTH1[0].GetXaxis().GetBinCenter(1)
           xAxisHigh   = FirstTH1[0].GetXaxis().GetBinCenter(FirstTH1[0].GetNbinsX())
           
-          yAxisHigh   = 4.0#FirstTH1[0].GetMaximum()*4e1
+          yAxisHigh   = 2.0 #FirstTH1[0].GetMaximum()*4e1
           yAxisLow    = 3e-4
 
           h2 = FirstTH1[0].Clone("h2")
           h2.Reset()
           h2.GetYaxis().SetTitle("#frac{Data}{MC}")
-
-          DrawHistsRatio(FirstTH1, LegendName, PlotColor, xAxisLow, xAxisHigh, yAxisLow, yAxisHigh, xAxisTitle, outDir+"/"+FirstTH1[0].GetName()+"_HighPtDataMC", h2, 1.0, 1.0, drawline, logy, latexName, latexName2, TeVTag, doSumw2, doAtlas, doLumi, noRatio, do80, do59)
+          try:
+            DrawHistsRatio(FirstTH1, LegendName, PlotColor, xAxisLow, xAxisHigh, yAxisLow, yAxisHigh, xAxisTitle, outDir+"/"+FirstTH1[0].GetName()+"_HighPtDataMC", h2, 1.0, 1.0, drawline, logy, latexName, latexName2, TeVTag, doSumw2, doAtlas, doLumi, noRatio, do80, do59)
+          except:
+             print("Can't plot ", FirstTH1[0].GetName())
       
           ### plotting in pt bins
-          if 'qOverP' in names:
+          # if 'qOverP' in names:
+          if 'zzz' in names:
               LegendName  = ["Data", "MC"]
-              ptBins      = ['1', '2', '3', '4']
-              etaBins     = ['1', '2', '3']
+              ptBins      = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+              etaBins     = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
               muonOrder   = {'0':"leading", '1':"sub-leading"}
               
               for key in muonOrder:
@@ -611,7 +630,7 @@ def main():
                     xAxisHigh   = FirstTH1[0].GetXaxis().GetBinCenter(FirstTH1[0].GetNbinsX())
                     
                     yAxisHigh   = 4.0 #FirstTH1[0].GetMaximum()*4e1
-                    yAxisLow    = 3e-4
+                    yAxisLow    = 3e-10
 
                     h2 = FirstTH1[0].Clone("h2")
                     h2.Reset()
@@ -623,10 +642,11 @@ def main():
                     firstTH1  = inFile1.Get(names+suf+"_highpt_etaBin"+etabinValue+"_"+key)
                     secondTH1 = inFile2.Get(names+suf+"_highpt_etaBin"+etabinValue+"_"+key)
 
+                    print("-------> ##### plotting ", firstTH1.GetName())
                     ### get normalized result
                     firstTH1    = normalizeHist(firstTH1)
                     secondTH1   = normalizeHist(secondTH1)
-
+                    print("-------> ##### plotting ", firstTH1.GetName())
                     latexName   = muonOrder[key]+" high p_{T} muon"
                     logy        = True
                     latexName2  = sector+", eta bin "+etabinValue
@@ -635,7 +655,7 @@ def main():
                     xAxisHigh   = FirstTH1[0].GetXaxis().GetBinCenter(FirstTH1[0].GetNbinsX())
                     
                     yAxisHigh   = 4.0 #FirstTH1[0].GetMaximum()*4e1
-                    yAxisLow    = 3e-4
+                    yAxisLow    = 3e-10
 
                     h2 = FirstTH1[0].Clone("h2")
                     h2.Reset()
