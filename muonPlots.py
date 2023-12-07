@@ -606,11 +606,11 @@ def main():
              print("Can't plot ", FirstTH1[0].GetName())
       
           ### plotting in pt bins
-          # if 'qOverP' in names:
-          if 'zzz' in names:
+          if 'qOverP' in names:
+          # if 'zzz' in names:
               LegendName  = ["Data", "MC"]
-              ptBins      = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
-              etaBins     = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+              ptBins      = ['1'] #['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+              etaBins     = ['1'] #['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
               muonOrder   = {'0':"leading", '1':"sub-leading"}
               
               for key in muonOrder:
