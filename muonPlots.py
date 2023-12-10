@@ -164,9 +164,9 @@ def OneRatioAxisSize(h2, color=kBlack):
 
 def SaveFile(c, CanvasName):
    #c.SaveAs(CanvasName+".C")
-   c.SaveAs(CanvasName+".png")
+  #  c.SaveAs(CanvasName+".png")
    c.SaveAs(CanvasName+".pdf")
-   c.SaveAs(CanvasName+".root")
+  #  c.SaveAs(CanvasName+".root")
 
 
 def AxisLabelEtc(hist, yAxisName, xAxisName):
@@ -424,6 +424,7 @@ def main():
     parser = argparse.ArgumentParser(description='Code to plot muon distributions')
     parser.add_argument('-i1', default="muonAnalysis_data23.root", type=str) ### use the Data histogram here
     parser.add_argument('-comp', action='store_true') ### turn this on when one wants to compare Data vs MC
+    parser.add_argument('-inGrid', action='store_true') ### turn this on when running on grid
     parser.add_argument('-i2', default="user.asantra.zmumu.ANALYSIS_Histogram_All.root", type=str) ### use the MC histogram here
     args = parser.parse_args()
 
@@ -436,12 +437,18 @@ def main():
         os.makedirs(outDir)
 
     ### get the root file
-    ### input directory where the histogram files live
-    inDir = "/Users/arkasantra/arka/MCPWork/MCPFiles/HistFiles"
+    if (args.inGrid):
+      ### input directory where the histogram files live
+      inDir1 = "/storage/agrp/arkas/MCPDataWorkArea/"
+      inDir2 = "/storage/agrp/arkas/MCPWorkArea/"
+    else:
+      ### input directory where the histogram files live
+      inDir1 = "/Users/arkasantra/arka/MCPWork/MCPFiles/HistFiles"
+      inDir2 = inDir2
     
     ### reading the histogram files
-    inFile1 = TFile(inDir+"/"+inName1, "READ")
-    if(args.comp): inFile2 = TFile(inDir+"/"+inName2, "READ")
+    inFile1 = TFile(inDir1+"/"+inName1, "READ")
+    if(args.comp): inFile2 = TFile(inDir2+"/"+inName2, "READ")
 
     ### add the histogram names that you want to plot
     histogramNames = ["mll", "nMuon", "muon_nprecisionLayers_0", "muon_nprecisionLayers_1", "muon_qOverPsignif_0", "muon_qOverPsignif_1", "muon_meqOverPsigma_0", "muon_meqOverPsigma_1", "muon_idqOverPsigma_0", "muon_idqOverPsigma_1", "muon_meqOverP_0", "muon_meqOverP_1", "muon_idqOverP_0", "muon_idqOverP_1","muon_pt_0", "muon_pt_1", "muon_pt_0", "muon_phi_0", "muon_phi_1", "muon_eta_0", "muon_eta_1", "muon_eta_vs_phi_0", "muon_eta_vs_phi_1"]
@@ -609,8 +616,10 @@ def main():
           if 'qOverP' in names:
           # if 'zzz' in names:
               LegendName  = ["Data", "MC"]
-              ptBins      = ['1'] #['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
-              etaBins     = ['1'] #['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+              # ptBins      = ['1'] 
+              ptBins      = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+              # etaBins     = ['1'] 
+              etaBins     = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
               muonOrder   = {'0':"leading", '1':"sub-leading"}
               
               for key in muonOrder:
