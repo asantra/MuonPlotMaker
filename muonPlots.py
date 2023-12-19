@@ -312,7 +312,7 @@ def DrawHists(FirstTH1, LegendName, PlotColor,xAxisName, yAxisName, xrange1down,
 
 
 ### prepare more than one histogram on one canvas, then also plots their ratio
-def DrawHistsRatio(FirstTH1, LegendName, PlotColor, xrange1down, xrange1up, yrange1down, yrange1up, xaxisTitle, CanvasName, h2, yline1low, yline1up, drawline=False, logy=False, LatexName='', LatexName2='', TeVTag=False, doSumw2=False, doAtlas=False, doLumi=False, noRatio=False, do80=False, do59=False,drawOption=""):
+def DrawHistsRatio(FirstTH1, LegendName, PlotColor, xrange1down, xrange1up, yrange1down, yrange1up, xaxisTitle, CanvasName, h2, yline1low, yline1up, drawline=False, logy=False, LatexName='', LatexName2='', TeVTag=False, doSumw2=False, doAtlas=False, doLumi=False, noRatio=False, do80=False, do59=False,logx=False):
    Tex = MakeLatex(0.85,0.65,LatexName)
    Tex2 = MakeLatex(0.85,0.60,LatexName2)
    c = TCanvas("c","c",900, 900)
@@ -326,6 +326,8 @@ def DrawHistsRatio(FirstTH1, LegendName, PlotColor, xrange1down, xrange1up, yran
    gStyle.SetOptStat(0)
    if(logy):
      pad1.SetLogy()
+   if(logx):
+     pad1.SetLogx()
      
    if "energy" in FirstTH1[0].GetName() or "time" in FirstTH1[0].GetName():
     pad1.SetLogx()
@@ -394,6 +396,9 @@ def DrawHistsRatio(FirstTH1, LegendName, PlotColor, xrange1down, xrange1up, yran
    pad2.SetFillStyle(0)
    pad2.Draw()
    pad2.cd()
+
+   if(logx):
+     pad2.SetLogx()
    gStyle.SetOptStat(0)
    gPad.SetTickx()
    gPad.SetTicky()
@@ -525,6 +530,7 @@ def main():
         ### plot 1D plots
         else:
           logy        = True
+          logx        = False
           latexName2  = sector
           FirstTH1    = [firstTH1, secondTH1]
           xAxisLow    = FirstTH1[0].GetXaxis().GetBinCenter(1)
@@ -545,7 +551,7 @@ def main():
           h2.GetYaxis().SetTitle("#frac{medium}{highpt}")
 
           try:
-            DrawHistsRatio(FirstTH1, LegendName, PlotColor, xAxisLow, xAxisHigh, yAxisLow, yAxisHigh, xAxisTitle, outDir+"/"+FirstTH1[0].GetName(), h2, 1.0, 1.0, drawline, logy, latexName, latexName2, TeVTag, doSumw2, doAtlas, doLumi, noRatio, do80, do59)
+            DrawHistsRatio(FirstTH1, LegendName, PlotColor, xAxisLow, xAxisHigh, yAxisLow, yAxisHigh, xAxisTitle, outDir+"/"+FirstTH1[0].GetName(), h2, 1.0, 1.0, drawline, logy, latexName, latexName2, TeVTag, doSumw2, doAtlas, doLumi, noRatio, do80, do59, logx)
           except:
              print("Can't plot ", FirstTH1[0].GetName())
 
@@ -596,6 +602,12 @@ def main():
 
           latexName   = "high p_{T} muon"
           logy        = True
+
+          if 'qOverPsigma' in names:
+            logx      = True
+          else:
+            logx      = False
+
           latexName2  = sector
           FirstTH1    = [firstTH1, secondTH1]
           xAxisLow    = FirstTH1[0].GetXaxis().GetBinCenter(1)
@@ -608,7 +620,7 @@ def main():
           h2.Reset()
           h2.GetYaxis().SetTitle("#frac{Data}{MC}")
           try:
-            DrawHistsRatio(FirstTH1, LegendName, PlotColor, xAxisLow, xAxisHigh, yAxisLow, yAxisHigh, xAxisTitle, outDir+"/"+FirstTH1[0].GetName()+"_HighPtDataMC", h2, 1.0, 1.0, drawline, logy, latexName, latexName2, TeVTag, doSumw2, doAtlas, doLumi, noRatio, do80, do59)
+            DrawHistsRatio(FirstTH1, LegendName, PlotColor, xAxisLow, xAxisHigh, yAxisLow, yAxisHigh, xAxisTitle, outDir+"/"+FirstTH1[0].GetName()+"_HighPtDataMC", h2, 1.0, 1.0, drawline, logy, latexName, latexName2, TeVTag, doSumw2, doAtlas, doLumi, noRatio, do80, do59, logx)
           except:
              print("Can't plot ", FirstTH1[0].GetName())
       
@@ -645,7 +657,7 @@ def main():
                     h2.Reset()
                     h2.GetYaxis().SetTitle("#frac{Data}{MC}")
 
-                    DrawHistsRatio(FirstTH1, LegendName, PlotColor, xAxisLow, xAxisHigh, yAxisLow, yAxisHigh, xAxisTitle, outDir+"/"+FirstTH1[0].GetName()+"_HighPtDataMC_ptBin"+ptbinValue+"_"+key, h2, 1.0, 1.0, drawline, logy, latexName, latexName2, TeVTag, doSumw2, doAtlas, doLumi, noRatio, do80, do59)
+                    DrawHistsRatio(FirstTH1, LegendName, PlotColor, xAxisLow, xAxisHigh, yAxisLow, yAxisHigh, xAxisTitle, outDir+"/"+FirstTH1[0].GetName()+"_HighPtDataMC_ptBin"+ptbinValue+"_"+key, h2, 1.0, 1.0, drawline, logy, latexName, latexName2, TeVTag, doSumw2, doAtlas, doLumi, noRatio, do80, do59, logx)
             
                   for etabinValue in etaBins:
                     firstTH1  = inFile1.Get(names+suf+"_highpt_etaBin"+etabinValue+"_"+key)
@@ -670,7 +682,7 @@ def main():
                     h2.Reset()
                     h2.GetYaxis().SetTitle("#frac{Data}{MC}")
 
-                    DrawHistsRatio(FirstTH1, LegendName, PlotColor, xAxisLow, xAxisHigh, yAxisLow, yAxisHigh, xAxisTitle, outDir+"/"+FirstTH1[0].GetName()+"_HighPtDataMC_etaBin"+etabinValue+"_"+key, h2, 1.0, 1.0, drawline, logy, latexName, latexName2, TeVTag, doSumw2, doAtlas, doLumi, noRatio, do80, do59)
+                    DrawHistsRatio(FirstTH1, LegendName, PlotColor, xAxisLow, xAxisHigh, yAxisLow, yAxisHigh, xAxisTitle, outDir+"/"+FirstTH1[0].GetName()+"_HighPtDataMC_etaBin"+etabinValue+"_"+key, h2, 1.0, 1.0, drawline, logy, latexName, latexName2, TeVTag, doSumw2, doAtlas, doLumi, noRatio, do80, do59, logx)
         
 if __name__=="__main__":
    start = time.time()
