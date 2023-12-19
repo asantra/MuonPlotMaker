@@ -20,9 +20,11 @@ do
     ### the place where the output and error file of the grid will live
     ### this should be the same as sendJobs.sh
     DESTINATION="/storage/agrp/arkas/MCPGridOutput"
+    # DESTINATION="/storage/agrp/arkas/MCPGridOutput2Muons"
 
     ### this should be the same as sendJobs.sh
     OUTDIRLOC="/storage/agrp/arkas/MCPWorkArea"
+    # OUTDIRLOC="/storage/agrp/arkas/MCPWorkArea2Muons"
 
     ### prepare the outfile
     suffix=".root"

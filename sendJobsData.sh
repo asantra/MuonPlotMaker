@@ -29,7 +29,8 @@ do
     echo "runid: "$runid
     ### the place where the output and error file of the grid will live
     ### change to the submitter's work area
-    DESTINATION="/storage/agrp/arkas/MCPDataGridOutput"
+    # DESTINATION="/storage/agrp/arkas/MCPDataGridOutput"
+    DESTINATION="/storage/agrp/arkas/MCPDataGridOutput2Muons"
     ### create the main directory if it does not exists
     mkdir -p ${DESTINATION}
     
@@ -40,7 +41,8 @@ do
     fi
 
     #### the location where the histograms will live, change to your area
-    OUTDIRLOC="/storage/agrp/arkas/MCPDataWorkArea"
+    # OUTDIRLOC="/storage/agrp/arkas/MCPDataWorkArea"
+    OUTDIRLOC="/storage/agrp/arkas/MCPDataWorkArea2Muons"
     #### create the run directory
     mkdir -p ${DESTINATION}"/run_"$runid
     mkdir -p ${OUTDIRLOC}
