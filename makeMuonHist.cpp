@@ -255,7 +255,7 @@ void makeMuonHist(string inputFolder="user.asantra.data23_13p6TeV.00456409.physi
     std::cout << "Looping over " << rangeNumber << " Events" << std::endl;
 
     /// filter out all events with low number of muons or low pt
-    auto dCut = d.Filter("!(muon_pt.size() < 2)")
+    auto dCut = d.Filter("(muon_pt.size() == 2)")
                  /// add HLT24 trigger cut
                  .Filter("!(muon_pt[0] < 25.)")
                  .Filter("!(muon_pt[1] < 25.)")
