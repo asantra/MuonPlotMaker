@@ -426,30 +426,48 @@ def DrawHistsRatio(FirstTH1, LegendName, PlotColor, xrange1down, xrange1up, yran
 ### tha main function which calls all the above functions
 def main():
     gROOT.SetBatch()
+
     parser = argparse.ArgumentParser(description='Code to plot muon distributions')
     parser.add_argument('-i1', default="muonAnalysis_data23.root", type=str) ### use the Data histogram here
     parser.add_argument('-comp', action='store_true') ### turn this on when one wants to compare Data vs MC
     parser.add_argument('-inGrid', action='store_true') ### turn this on when running on grid
     parser.add_argument('-i2', default="user.asantra.zmumu.ANALYSIS_Histogram_All.root", type=str) ### use the MC histogram here
+    parser.add_argument('-two', action="store_true") ### request to get 2 muon selection
     args = parser.parse_args()
 
     inName1 = args.i1
     if(args.comp): inName2 = args.i2
     outDirExtension = inName1.split('.root')[0]
     
-    outDir = "muCompDist_"+outDirExtension
+    if(args.two):
+      outDir = "muCompDist2Muons_"+outDirExtension
+    else:
+      outDir = "muCompDist_"+outDirExtension
+
     if not os.path.exists(outDir):
         os.makedirs(outDir)
 
     ### get the root file
     if (args.inGrid):
+
       ### input directory where the histogram files live
-      inDir1 = "/storage/agrp/arkas/MCPDataWorkArea/"
-      inDir2 = "/storage/agrp/arkas/MCPWorkArea/"
+      if(args.two):
+        inDir1 = "/storage/agrp/arkas/MCPDataWorkArea2Muons/"
+        inDir2 = "/storage/agrp/arkas/MCPWorkArea2Muons/"
+      else:
+        inDir1 = "/storage/agrp/arkas/MCPDataWorkArea/"
+        inDir2 = "/storage/agrp/arkas/MCPWorkArea/"
+
     else:
-      ### input directory where the histogram files live
-      inDir1 = "/Users/arkasantra/arka/MCPWork/MCPFiles/HistFiles"
-      inDir2 = inDir2
+      
+      if(args.two):
+         ### input directory where the histogram files live
+        inDir1 = "/Users/arkasantra/arka/MCPWork/MCPFiles/HistFiles2Muons"
+        inDir2 = inDir2
+      else:
+        ### input directory where the histogram files live
+        inDir1 = "/Users/arkasantra/arka/MCPWork/MCPFiles/HistFiles"
+        inDir2 = inDir2
     
     ### reading the histogram files
     inFile1 = TFile(inDir1+"/"+inName1, "READ")
