@@ -459,7 +459,7 @@ def main():
         inDir2 = "/storage/agrp/arkas/MCPWorkArea/"
 
     else:
-      
+
       if(args.two):
          ### input directory where the histogram files live
         inDir1 = "/Users/arkasantra/arka/MCPWork/MCPFiles/HistFiles2Muons"
@@ -631,8 +631,11 @@ def main():
           xAxisLow    = FirstTH1[0].GetXaxis().GetBinCenter(1)
           xAxisHigh   = FirstTH1[0].GetXaxis().GetBinCenter(FirstTH1[0].GetNbinsX())
           
-          yAxisHigh   = 2.0 #FirstTH1[0].GetMaximum()*4e1
-          yAxisLow    = 3e-4
+          yAxisHigh   = 4.0 #FirstTH1[0].GetMaximum()*4e1
+          if 'qOverP' in names:
+            yAxisLow    = 3e-10
+          else:
+            yAxisLow    = 3e-4
 
           h2 = FirstTH1[0].Clone("h2")
           h2.Reset()
