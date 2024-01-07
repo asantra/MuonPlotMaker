@@ -13,10 +13,10 @@ INFILE=${2:-"inputFileNames.txt"}
 sample=${3:-"MC"}
 
 
-### first prepare the .so file from makeMuonHist.cpp
-# root -l -b << EOF
-# .L makeMuonHist.cpp++
-# EOF
+## first prepare the .so file from makeMuonHist.cpp
+root -l -b << EOF
+.L makeMuonHist.cpp++
+EOF
 
 # Read the input text file line by line
 while read -r LINE

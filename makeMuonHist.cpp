@@ -168,10 +168,18 @@ void makeMuonHist(string inputFolder="user.asantra.data23_13p6TeV.00456409.physi
     allHisto1Dict.insert(make_pair("muon_meqOverP_1", ROOT::RDF::TH1DModel("muon_meqOverP_1", "meqOverP1; qOverP_{me} (sub-lead); Events/bin", 100, -0.00007, 0.00007)));
     allHisto1Dict.insert(make_pair("muon_idqOverPsigma_0", ROOT::RDF::TH1DModel("muon_idqOverPsigma_0", "idqOverPsigma0; #sigma_{id} (lead); Events/bin", nbins, sigma_array)));
     allHisto1Dict.insert(make_pair("muon_idqOverPsigma_1", ROOT::RDF::TH1DModel("muon_idqOverPsigma_1", "idqOverPsigma1; #sigma_{id} (sub-lead); Events/bin", nbins, sigma_array)));
+    allHisto1Dict.insert(make_pair("muon_expectedRes_CB_0", ROOT::RDF::TH1DModel("muon_expectedRes_CB_0", "cbqOverPsigmaExpected0; #sigma_{cb} (lead); Events/bin", nbins, sigma_array)));
+    allHisto1Dict.insert(make_pair("muon_expectedRes_CB_1", ROOT::RDF::TH1DModel("muon_expectedRes_CB_1", "cbqOverPsigmaExpected1; #sigma_{cb} (sub-lead); Events/bin", nbins, sigma_array)));
+    allHisto1Dict.insert(make_pair("muon_expectedRes_MS_0", ROOT::RDF::TH1DModel("muon_expectedRes_MS_0", "msqOverPsigmaExpected0; #sigma_{ms} (lead); Events/bin", nbins, sigma_array)));
+    allHisto1Dict.insert(make_pair("muon_expectedRes_MS_1", ROOT::RDF::TH1DModel("muon_expectedRes_MS_1", "msqOverPsigmaExpected1; #sigma_{ms} (sub-lead); Events/bin", nbins, sigma_array)));
+    allHisto1Dict.insert(make_pair("muon_expectedRes_ID_0", ROOT::RDF::TH1DModel("muon_expectedRes_ID_0", "idqOverPsigmaExpected0; #sigma_{id} (lead); Events/bin", nbins, sigma_array)));
+    allHisto1Dict.insert(make_pair("muon_expectedRes_ID_1", ROOT::RDF::TH1DModel("muon_expectedRes_ID_1", "idqOverPsigmaExpected1; #sigma_{id} (sub-lead); Events/bin", nbins, sigma_array)));
     allHisto1Dict.insert(make_pair("muon_idqOverP_0", ROOT::RDF::TH1DModel("muon_idqOverP_0", "idqOverP0; qOverP_{id} (lead); Events/bin", 100, -0.00007, 0.00007)));
     allHisto1Dict.insert(make_pair("muon_idqOverP_1", ROOT::RDF::TH1DModel("muon_idqOverP_1", "idqOverP1; qOverP_{id} (sub-lead); Events/bin", 100, -0.00007, 0.00007)));
     allHisto1Dict.insert(make_pair("muon_qOverPsignif_0", ROOT::RDF::TH1DModel("muon_qOverPsignif_0", "qOverPsignif; q/p significance (lead); Events/bin", 50, 0, 10)));
     allHisto1Dict.insert(make_pair("muon_qOverPsignif_1", ROOT::RDF::TH1DModel("muon_qOverPsignif_1", "qOverPsignif; q/p significance (sub-lead); Events/bin", 50, 0, 10)));
+    allHisto1Dict.insert(make_pair("muon_qOverPsignif_expected_0", ROOT::RDF::TH1DModel("muon_qOverPsignif_expected_0", "qOverPsignif; q/p significance (lead); Events/bin", 50, 0, 10)));
+    allHisto1Dict.insert(make_pair("muon_qOverPsignif_expected_1", ROOT::RDF::TH1DModel("muon_qOverPsignif_expected_1", "qOverPsignif; q/p significance (sub-lead); Events/bin", 50, 0, 10)));
     allHisto1Dict.insert(make_pair("muon_pt_0", ROOT::RDF::TH1DModel("muon_pt_0", "muon_pt; p_{T} (lead) [GeV]; Events/bin", 50, 0, 500)));
     allHisto1Dict.insert(make_pair("muon_pt_1", ROOT::RDF::TH1DModel("muon_pt_1", "muon_pt; p_{T} (sub-lead) [GeV]; Events/bin", 50, 0, 500)));
     allHisto1Dict.insert(make_pair("muon_phi_0", ROOT::RDF::TH1DModel("muon_phi_0", "muon_phi; #phi (lead); Events/bin", 160, -4, 4)));
@@ -196,8 +204,16 @@ void makeMuonHist(string inputFolder="user.asantra.data23_13p6TeV.00456409.physi
     allHisto1Dict_EC.insert(make_pair("muon_idqOverP_1", ROOT::RDF::TH1DModel("muon_idqOverP_1_EC", "idqOverP1; qOverP_{id} (sub-lead); Events/bin", 100, -0.00007, 0.00007)));
     allHisto1Dict_EC.insert(make_pair("muon_idqOverPsigma_0", ROOT::RDF::TH1DModel("muon_idqOverPsigma_0_EC", "idqOverPsigma0; #sigma_{id} (lead); Events/bin", nbins, sigma_array)));
     allHisto1Dict_EC.insert(make_pair("muon_idqOverPsigma_1", ROOT::RDF::TH1DModel("muon_idqOverPsigma_1_EC", "idqOverPsigma1; #sigma_{id} (sub-lead); Events/bin", nbins, sigma_array)));
+    allHisto1Dict_EC.insert(make_pair("muon_expectedRes_CB_0", ROOT::RDF::TH1DModel("muon_expectedRes_CB_0_EC", "cbqOverPsigmaExpected0; #sigma_{cb} (lead); Events/bin", nbins, sigma_array)));
+    allHisto1Dict_EC.insert(make_pair("muon_expectedRes_CB_1", ROOT::RDF::TH1DModel("muon_expectedRes_CB_1_EC", "cbqOverPsigmaExpected1; #sigma_{cb} (sub-lead); Events/bin", nbins, sigma_array)));
+    allHisto1Dict_EC.insert(make_pair("muon_expectedRes_MS_0", ROOT::RDF::TH1DModel("muon_expectedRes_MS_0_EC", "msqOverPsigmaExpected0; #sigma_{ms} (lead); Events/bin", nbins, sigma_array)));
+    allHisto1Dict_EC.insert(make_pair("muon_expectedRes_MS_1", ROOT::RDF::TH1DModel("muon_expectedRes_MS_1_EC", "msqOverPsigmaExpected1; #sigma_{ms} (sub-lead); Events/bin", nbins, sigma_array)));
+    allHisto1Dict_EC.insert(make_pair("muon_expectedRes_ID_0", ROOT::RDF::TH1DModel("muon_expectedRes_ID_0_EC", "idqOverPsigmaExpected0; #sigma_{id} (lead); Events/bin", nbins, sigma_array)));
+    allHisto1Dict_EC.insert(make_pair("muon_expectedRes_ID_1", ROOT::RDF::TH1DModel("muon_expectedRes_ID_1_EC", "idqOverPsigmaExpected1; #sigma_{id} (sub-lead); Events/bin", nbins, sigma_array)));
     allHisto1Dict_EC.insert(make_pair("muon_qOverPsignif_0", ROOT::RDF::TH1DModel("muon_qOverPsignif_0_EC", "qOverPsignif; q/p significance (lead); Events/bin", 50, 0, 10)));
     allHisto1Dict_EC.insert(make_pair("muon_qOverPsignif_1", ROOT::RDF::TH1DModel("muon_qOverPsignif_1_EC", "qOverPsignif; q/p significance (sub-lead); Events/bin", 50, 0, 10)));
+    allHisto1Dict_EC.insert(make_pair("muon_qOverPsignif_expected_0", ROOT::RDF::TH1DModel("muon_qOverPsignif_expected_0_EC", "qOverPsignif; q/p significance (lead); Events/bin", 50, 0, 10)));
+    allHisto1Dict_EC.insert(make_pair("muon_qOverPsignif_expected_1", ROOT::RDF::TH1DModel("muon_qOverPsignif_expected_1_EC", "qOverPsignif; q/p significance (sub-lead); Events/bin", 50, 0, 10)));
     allHisto1Dict_EC.insert(make_pair("muon_pt_0", ROOT::RDF::TH1DModel("muon_pt_0_EC", "muon_pt; p_{T} (lead) [GeV]; Events/bin", 50, 0, 500)));
     allHisto1Dict_EC.insert(make_pair("muon_pt_1", ROOT::RDF::TH1DModel("muon_pt_1_EC", "muon_pt; p_{T} (sub-lead) [GeV]; Events/bin", 50, 0, 500)));
     allHisto1Dict_EC.insert(make_pair("muon_phi_0", ROOT::RDF::TH1DModel("muon_phi_0_EC", "muon_phi; #phi (lead); Events/bin", 160, -4, 4)));
@@ -273,6 +289,12 @@ void makeMuonHist(string inputFolder="user.asantra.data23_13p6TeV.00456409.physi
                  .Define("muon_meqOverPsigma_1", "muon_meqOverPsigma[1]")
                  .Define("muon_idqOverPsigma_0", "muon_idqOverPsigma[0]")
                  .Define("muon_idqOverPsigma_1", "muon_idqOverPsigma[1]")
+                 .Define("muon_expectedRes_CB_0", "muon_expectedRes_CB[0]")
+                 .Define("muon_expectedRes_CB_1", "muon_expectedRes_CB[1]")
+                 .Define("muon_expectedRes_MS_0", "muon_expectedRes_MS[0]")
+                 .Define("muon_expectedRes_MS_1", "muon_expectedRes_MS[1]")
+                 .Define("muon_expectedRes_ID_0", "muon_expectedRes_ID[0]")
+                 .Define("muon_expectedRes_ID_1", "muon_expectedRes_ID[1]")
                  .Define("muon_meqOverP_0", "muon_meqOverP[0]")
                  .Define("muon_meqOverP_1", "muon_meqOverP[1]")
                  .Define("muon_idqOverP_0", "muon_idqOverP[0]")
@@ -281,6 +303,8 @@ void makeMuonHist(string inputFolder="user.asantra.data23_13p6TeV.00456409.physi
                  .Define("muon_nprecisionLayers_1", "muon_nprecisionLayers[1]")
                  .Define("muon_qOverPsignif_0", "muon_qOverPsignif[0]")
                  .Define("muon_qOverPsignif_1", "muon_qOverPsignif[1]")
+                 .Define("muon_qOverPsignif_expected_0", "muon_qOverPsignif_expected[0]")
+                 .Define("muon_qOverPsignif_expected_1", "muon_qOverPsignif_expected[1]")
                  .Define("ptBin_0", "getPtBin(muon_pt[0])")
                  .Define("ptBin_1", "getPtBin(muon_pt[1])")
                  .Define("etaBin_0", "getEtaBin(muon_eta[0])")
