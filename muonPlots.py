@@ -440,9 +440,9 @@ def main():
     outDirExtension = inName1.split('.root')[0]
     
     if(args.two):
-      outDir = "muCompDist2Muons_"+outDirExtension
+      outDir = "muCompDist2Muons_Calibrated_"+outDirExtension
     else:
-      outDir = "muCompDist_"+outDirExtension
+      outDir = "muCompDist_Calibrated_"+outDirExtension
 
     if not os.path.exists(outDir):
         os.makedirs(outDir)
@@ -462,8 +462,8 @@ def main():
 
       if(args.two):
          ### input directory where the histogram files live
-        inDir1 = "/Users/arkasantra/arka/MCPWork/MCPFiles/HistFiles2Muons"
-        inDir2 = inDir2
+        inDir1 = "/Users/arkasantra/arka/MCPWork/MCPFiles/HistFiles"
+        inDir2 = inDir1
       else:
         ### input directory where the histogram files live
         inDir1 = "/Users/arkasantra/arka/MCPWork/MCPFiles/HistFiles"
@@ -474,7 +474,7 @@ def main():
     if(args.comp): inFile2 = TFile(inDir2+"/"+inName2, "READ")
 
     ### add the histogram names that you want to plot
-    histogramNames = ["mll", "nMuon", "muon_nprecisionLayers_0", "muon_nprecisionLayers_1", "muon_qOverPsignif_0", "muon_qOverPsignif_1", "muon_meqOverPsigma_0", "muon_meqOverPsigma_1", "muon_idqOverPsigma_0", "muon_idqOverPsigma_1", "muon_meqOverP_0", "muon_meqOverP_1", "muon_idqOverP_0", "muon_idqOverP_1","muon_pt_0", "muon_pt_1", "muon_pt_0", "muon_phi_0", "muon_phi_1", "muon_eta_0", "muon_eta_1", "muon_eta_vs_phi_0", "muon_eta_vs_phi_1"]
+    histogramNames = ["mll", "nMuon", "muon_nprecisionLayers_0", "muon_nprecisionLayers_1", "muon_qOverPsignif_0", "muon_qOverPsignif_1", "muon_meqOverPsigma_0", "muon_meqOverPsigma_1", "muon_idqOverPsigma_0", "muon_idqOverPsigma_1", "muon_meqOverP_0", "muon_meqOverP_1", "muon_idqOverP_0", "muon_idqOverP_1","muon_pt_0", "muon_pt_1", "muon_pt_0", "muon_phi_0", "muon_phi_1", "muon_eta_0", "muon_eta_1", "muon_eta_vs_phi_0", "muon_eta_vs_phi_1", "muon_qOverPsignif_expected_0", "muon_qOverPsignif_expected_1", "muon_expectedRes_ID_0", "muon_expectedRes_ID_1", "muon_expectedRes_MS_0", "muon_expectedRes_MS_1", "muon_expectedRes_CB_0", "muon_expectedRes_CB_1"]
 
 
 
@@ -493,6 +493,8 @@ def main():
            suf = ''
         else:
            suf = '_EC'
+
+        '''
         ### get histograms
         firstTH1  = inFile1.Get(names+suf+"_medium")
         secondTH1 = inFile1.Get(names+suf+"_highpt")
@@ -573,10 +575,11 @@ def main():
           except:
              print("Can't plot ", FirstTH1[0].GetName())
 
-
+        '''
 
         ### if we want to compare between data and MC situation
         if(args.comp):
+          '''
           LegendName  = ["Data", "MC"]
           firstTH1  = inFile1.Get(names+suf+"_medium")
           secondTH1 = inFile2.Get(names+suf+"_medium")
@@ -609,10 +612,12 @@ def main():
           except:
              print("Can't plot ", FirstTH1[0].GetName())
           
-          
+          '''
           LegendName  = ["Data", "MC"]
-          firstTH1  = inFile1.Get(names+suf+"_highpt")
-          secondTH1 = inFile2.Get(names+suf+"_highpt")
+          PlotColor   = [2, 4]
+          firstTH1    = inFile1.Get(names+suf+"_highpt")
+          secondTH1   = inFile2.Get(names+suf+"_highpt")
+          xAxisTitle  = secondTH1.GetXaxis().GetTitle()
 
           ### get normalized result
           firstTH1    = normalizeHist(firstTH1)
